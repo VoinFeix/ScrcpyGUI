@@ -28,8 +28,9 @@ def video_widget(self):
 
             self.cameraFacingCheckBox.destroy()
             self.cameraFacing_menu.destroy()
-        except:
-            pass
+            # self.cameraIDs.clear()
+        except Exception as e:
+            print(f'Error on video widget\n{str(e)}')
 
         return
 
@@ -52,6 +53,7 @@ def video_widget(self):
     self.videoSourceMode_value = ctk.StringVar()
     self.videoSourceMode_value.set(self.videoSourceModes[0])
 
+
     self.videoSourceMode_menu = ctk.CTkOptionMenu(self.videoFrame, variable=self.videoSourceMode_value, command=self.camera_widget, values=self.videoSourceModes, font=default_font)
     self.videoSourceMode_menu.grid(row=0, column=2, padx=10, pady=10)
     self.videoSourceMode_menu.configure(state='disabled')
@@ -71,27 +73,32 @@ def camera_widget(self, *args):
         try:
             self.cameraIDCheckBox.destroy()
             self.cameraID_menu.destroy()
-            self.cameraID.clear()
+            # self.cameraIDs.clear()
 
             self.cameraFacingCheckBox.destroy()
             self.cameraFacing_menu.destroy()
-        except:
-            pass
+        except Exception as e:
+            print(f'Error on Camera Widget\n{str(e)}')
         return
 
     self.cameraID_check_value = ctk.BooleanVar()
     self.cameraIDCheckBox = ctk.CTkCheckBox(self.videoFrame, text='CameraID:', command=self.enable_cameraID_option, variable=self.cameraID_check_value, font=default_font)
     self.cameraIDCheckBox.grid(row=1, column=1, padx=10, pady=10)
     
-    self.cameraID: list = listCameraIDs.getCameraIDs(self.videoFrame, self.devices_menu.get())
-    print("Camera IDS: ", self.cameraID)
+    cameraIDs: list = [] 
+    l = listCameraIDs.getCameraIDs(self.videoFrame, self.devices_menu.get())
+
+    for id in l:
+        cameraIDs.append(id)
+
+    print("Camera IDS: ", cameraIDs)
 #    self.cameraID: list = ["temp"]
     self.cameraID_value = ctk.StringVar()
-    self.cameraID_value.set(self.cameraID[0])
+    self.cameraID_value.set(cameraIDs[0])
 
     self.cameraID_menu = ctk.CTkOptionMenu(self.videoFrame, variable=self.cameraID_value, command=None, font=default_font)
     self.cameraID_menu.grid(row=1, column=2, padx=10, pady=10)
-    self.cameraID_menu.configure(values=self.cameraID)
+    self.cameraID_menu.configure(values=cameraIDs)
     self.cameraID_menu.configure(state='disabled')
 
     self.cameraFacing_check_value = ctk.BooleanVar()
@@ -117,28 +124,32 @@ def enable_videoSource_option(self):
         try:
             self.cameraIDCheckBox.destroy()
             self.cameraID_menu.destroy()
-
             self.cameraFacingCheckBox.destroy()
             self.cameraFacing_menu.destroy()
-        except:
-            pass
+            # self.cameraIDs.clear()
+        except Exception as e:
+            print(f'Error on enable videoSource function\n{str(e)}')
 
 def enable_noVideoPlayback_option(self):
     if self.noVideoPlayback_check_value.get():
         self.videoSource_check_value.set(0)
         self.videoSourceMode_menu.configure(state='disabled')
+        self.videoSourceCheckBox.configure(state='disabled')
         
         try:
             self.cameraIDCheckBox.destroy()
             self.cameraID_menu.destroy()
-            self.cameraID.clear()
+            # self.cameraIDs.clear()
 
             self.cameraFacingCheckBox.destroy()
             self.cameraFacing_menu.destroy()
-        except:
-            pass
+            self.videoSourceMode_value.set(self.videoSourceModes[0])
+        except Exception as e:
+            print(f'Error on enable noVideoPlayback function\n{str(e)}')
         # self.camera_widget()
-    
+    else:
+        self.videoSourceCheckBox.configure(state='normal')
+
 def enable_cameraID_option(self):
     if self.cameraID_check_value.get():
         self.cameraID_menu.configure(state='normal')

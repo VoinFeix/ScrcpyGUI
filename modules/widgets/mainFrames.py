@@ -26,8 +26,8 @@ def mainFrames(self):
     self.lastFrame = ctk.CTkFrame(self.root, border_color='red', border_width=3)
     self.lastFrame.grid(row=4, column=0, sticky='NSEW', padx=10, pady=8)
 
-    # self.bottomFrame = ctk.CTkFrame(self.root, border_color='orange', border_width=3)
-    # self.bottomFrame.grid(row=5, column=0, sticky='NSEW', padx=10, pady=8)
+    self.bottomFrame = ctk.CTkFrame(self.root, border_color='orange', border_width=3)
+    self.bottomFrame.grid(row=5, column=0, sticky='NSEW', padx=10, pady=8)
 
     self.runFrame = ctk.CTkFrame(self.root, border_color='purple', border_width=3)
     self.runFrame.grid(row=6, column=0, sticky='NSEW', padx=10, pady=8)

@@ -30,7 +30,9 @@ def runProcess(device, otg, keyboard, mouse, gamepad, noControl, audioSource, no
     
     # Audio Frame values
     if noAudioPlayback:
-        audioSource = None
+        noAudioPlaybackCmd: list = ['--no-audio-playback']
+        mainCmd += noAudioPlaybackCmd
+        
     else:
         if noAudioForwarding:
             noAudioForwardingCmd: list = ['--no-audio']
@@ -41,7 +43,8 @@ def runProcess(device, otg, keyboard, mouse, gamepad, noControl, audioSource, no
 
     # Video Frame Values
     if noVideoPlayback:
-        videoSource = None
+        noVideoPlaybackCmd: list = []
+        mainCmd += noVideoPlaybackCmd
     else:
         if noVideoForwarding:
             noVideoForwardingCmd: list = ['--no-video']
@@ -66,9 +69,14 @@ def start_runProcess_thread(device, otg, keyboard, mouse, gamepad, noControl, au
     thread.start()
 
 def stopScrcpy(self):
-    global command
-    command.terminate()
-    
+    try:
+        global command
+        command.terminate()
+        
+    except Exception as e:
+        print(f'Error on stopScrcpy function\n{str(e)}')
+        self.root.quit()
+
 def runScrcpy(self):
     if self.devices_menu.get():
         device = self.devices_menu.get()

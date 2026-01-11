@@ -67,3 +67,6 @@ def enable_noAudioPlayback_option(self):
     if self.noAudioPlayback_check_value.get():
         self.audioSourceMode_menu.configure(state='disabled')
         self.audioSource_check_value.set(0)
+        self.audioSourceCheckBox.configure(state='disabled')
+    else:
+        self.audioSourceCheckBox.configure(state='normal')
