@@ -1,5 +1,6 @@
 
 import customtkinter as ctk
+import tkinter as tk
 
 from modules.widgets import startWidget
 from modules.widgets import mainFrames
@@ -8,6 +9,7 @@ from modules.widgets import devicesWidget
 from modules.widgets import inputsWidget
 from modules.widgets import audioWidget
 from modules.widgets import videoWidget
+from modules.widgets import advanchedWidget
 
 from modules.utils import checkPkgs
 from modules.utils import runScrcpy
@@ -17,6 +19,8 @@ from modules.logging import Logs
 HEIGHT = 1200
 WIDTH = 800
 GEOMETRY = f'{HEIGHT}x{WIDTH}'
+MAIN_WINDOW_NAME = 'ScrcpyGUI'
+APPEARANCEMODE = 'dark'
 
 checkPkgs.checkPkgs()
 
@@ -25,10 +29,10 @@ logs = Logs()
 class ScrcpyGUI:
     def __init__(self, root):
         self.root = root
-        self.root.title('ScrcpyGUI')
+        self.root.title(MAIN_WINDOW_NAME)
         self.root.geometry(GEOMETRY)
         # self.root.resizable(False, False)
-        ctk.set_appearance_mode('dark')
+        ctk.set_appearance_mode(APPEARANCEMODE)
         
         # Main Frame
         mainFrames.mainFrames(self)
@@ -48,6 +52,8 @@ class ScrcpyGUI:
         # Camera Widget
         # cameraWidget.cameraCheck(self)
 
+        # Advanched Widget
+        advanchedWidget.advanchedCheck(self)
 
         # Start Widget
         startWidget.startCheck(self)
@@ -111,6 +117,11 @@ class ScrcpyGUI:
 
     def stopScrcpy(self):
         runScrcpy.stopScrcpy(self)
+
+    def advanched_widget(self):
+        advanchedWidget.advanched_widget(self)
+        # advanchedWidget.AdvanchedWindow()
+
 
     def exitScrcpy_func(self):
         self.stopScrcpy()
