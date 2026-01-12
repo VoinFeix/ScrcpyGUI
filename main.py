@@ -122,6 +122,29 @@ class ScrcpyGUI:
         advanchedWidget.advanched_widget(self)
         # advanchedWidget.AdvanchedWindow()
 
+    def advanched_widgets_options(self):
+        advanchedWidget.advanched_widgets_options(self)
+
+    def enable_angle_option(self):
+        advanchedWidget.enable_angle_option(self)
+    
+    def enable_audioBitRate_option(self):
+        advanchedWidget.enable_audioBitRate_option(self)
+
+    def enable_audioBuffer_option(self):
+        advanchedWidget.enable_audioBuffer_option(self)
+
+    def enable_audioCodec_option(self):
+        advanchedWidget.enable_audioCodec_option(self)
+    
+    def get_audioDup_option(self):
+        advanchedWidget.get_audioDup_option(self)
+        
+    # def enable_advanched_widgets_options(self):
+    #     advanchedWidget.enable_advanched_widgets_options(self)
+    
+    def exitAdvanchedWindow_func(self):
+        advanchedWidget.exitAdvanchedWindow_func(self)
 
     def exitScrcpy_func(self):
         self.stopScrcpy()
