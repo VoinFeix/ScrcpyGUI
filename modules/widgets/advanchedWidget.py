@@ -3,7 +3,7 @@ import tkinter as tk
 from modules.themes.themes import default_font, heading_font
 
 ADVANCHED_WINDOW_NAME = 'Advanched Options'
-ADVANCHED_WINDOW_GEOMETRY = '600x600'
+ADVANCHED_WINDOW_GEOMETRY = '650x650'
 
 window = None
 def advanchedCheck(self):
@@ -100,6 +100,45 @@ def advanched_widgets_options(self):
 
     self.get_audioDup_option()
 
+    self.audioEncoder_check_value = ctk.BooleanVar()
+    self.audioEncoderCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='AudioEncoder:', command=self.enable_audioEncoder_option, variable=self.audioEncoder_check_value, font=default_font)
+    self.audioEncoderCheckBox.grid(row=3, column=0, padx=10, pady=10)
+
+    self.audioEncoders: list = ["Sample"]
+    self.audioEncoder_value = ctk.StringVar()
+    self.audioEncoder_value.set(self.audioEncoders[0])
+
+    self.audioEncoderOptionMenu = ctk.CTkOptionMenu(self.advanchedWindow_frame, variable=self.audioEncoder_value, values=self.audioEncoders, font=default_font)
+    self.audioEncoderOptionMenu.grid(row=3, column=1, padx=10, pady=10)
+    self.audioEncoderOptionMenu.configure(state='disabled')
+
+    self.audioOutputBuffer_check_value = ctk.BooleanVar()
+    self.audioOutputBufferCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='AudioOutputBuffer:', variable=self.audioOutputBuffer_check_value, command=self.enable_audioOutputBuffer_option, font=default_font)
+    self.audioOutputBufferCheckBox.grid(row=3, column=2, padx=10, pady=10)
+
+    self.audioOutputBufferEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=70, font=default_font)
+    self.audioOutputBufferEntry.grid(row=3, column=3, padx=10, pady=10)
+    self.audioOutputBufferEntry.insert(ctk.END, '5')
+    self.audioOutputBufferEntry.configure(state='disabled')
+
+    self.videoBitRate_check_value = ctk.BooleanVar()
+    self.videoBitRateCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='VideoBitRate:', command=self.enable_videoBitRate_option, variable=self.videoBitRate_check_value, font=default_font)
+    self.videoBitRateCheckBox.grid(row=4, column=0, padx=10, pady=10)
+
+    self.videoBitRateEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.videoBitRateEntry.grid(row=4, column=1, padx=10, pady=10)
+    self.videoBitRateEntry.insert(ctk.END, '8M')
+    self.videoBitRateEntry.configure(state='disabled')
+    
+    self.cameraAr_check_value = ctk.BooleanVar()
+    self.cameraArCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='CameraAr:', command=self.enable_cameraAr_option, variable=self.cameraAr_check_value, font=default_font)
+    self.cameraArCheckBox.grid(row=4, column=2, padx=10, pady=10)
+
+    self.cameraArEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=70, font=default_font)
+    self.cameraArEntry.grid(row=4, column=3, padx=10, pady=10)
+    # self.cameraArEntry.insert(ctk.END, '')
+    self.cameraArEntry.configure(state='disabled')
+
 # def enable_advanched_widgets_options(self):
 #     enable_angle_option(self)
 
@@ -152,3 +191,26 @@ def get_audioDup_option(self):
     except Exception as e:
         print(f'Error on get_audioDup_option function\n{str(e)}')
 
+def enable_audioEncoder_option(self):
+    if self.audioEncoder_check_value.get():
+        self.audioEncoderOptionMenu.configure(state='normal')
+    else:
+        self.audioEncoderOptionMenu.configure(state='disabled')
+
+def enable_audioOutputBuffer_option(self):
+    if self.audioOutputBuffer_check_value.get():
+        self.audioOutputBufferEntry.configure(state='normal')
+    else:
+        self.audioOutputBufferEntry.configure(state='disabled')
+
+def enable_videoBitRate_option(self):
+    if self.videoBitRate_check_value.get():
+        self.videoBitRateEntry.configure(state='normal')
+    else:
+        self.videoBitRateEntry.configure(state='disabled')
+
+def enable_cameraAr_option(self):
+    if self.cameraAr_check_value.get():
+        self.cameraArEntry.configure(state='normal')
+    else:
+        self.cameraArEntry.configure(state='disabled')
