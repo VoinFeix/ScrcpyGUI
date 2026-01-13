@@ -139,7 +139,18 @@ class ScrcpyGUI:
     
     def get_audioDup_option(self):
         advanchedWidget.get_audioDup_option(self)
+    
+    def enable_audioEncoder_option(self):
+        advanchedWidget.enable_audioEncoder_option(self)
+
+    def enable_audioOutputBuffer_option(self):
+        advanchedWidget.enable_audioOutputBuffer_option(self)
         
+    def enable_videoBitRate_option(self):
+        advanchedWidget.enable_videoBitRate_option(self)
+
+    def enable_cameraAr_option(self):
+        advanchedWidget.enable_cameraAr_option(self)
     # def enable_advanched_widgets_options(self):
     #     advanchedWidget.enable_advanched_widgets_options(self)
     
