@@ -151,6 +151,36 @@ class ScrcpyGUI:
 
     def enable_cameraAr_option(self):
         advanchedWidget.enable_cameraAr_option(self)
+
+    def enable_cameraFps_option(self):
+        advanchedWidget.enable_cameraFps_option(self)
+
+    def enable_cameraSize_option(self):
+        advanchedWidget.enable_cameraSize_option(self)
+
+    def enable_captureOrientation_option(self):
+        advanchedWidget.enable_captureOrientation_option(self)
+
+    def enable_crop_option(self):
+        advanchedWidget.enable_crop_option(self)
+
+    def enable_maxSize_option(self):
+        advanchedWidget.enable_maxSize_option(self)
+
+    def enable_maxFps_option(self):
+        advanchedWidget.enable_maxFps_option(self)
+
+    def enable_newDisplay_option(self):
+        advanchedWidget.enable_newDisplay_option(self)
+    
+    def enable_port_option(self):
+        advanchedWidget.enable_port_option(self)
+    
+    def enable_pauseOnExit_option(self):
+        advanchedWidget.enable_pauseOnExit_option(self)
+
+
+        
     # def enable_advanched_widgets_options(self):
     #     advanchedWidget.enable_advanched_widgets_options(self)
     

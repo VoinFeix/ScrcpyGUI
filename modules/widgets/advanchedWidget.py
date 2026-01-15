@@ -3,7 +3,7 @@ import tkinter as tk
 from modules.themes.themes import default_font, heading_font
 
 ADVANCHED_WINDOW_NAME = 'Advanched Options'
-ADVANCHED_WINDOW_GEOMETRY = '650x650'
+ADVANCHED_WINDOW_GEOMETRY = '1000x1000'
 
 window = None
 def advanchedCheck(self):
@@ -139,21 +139,176 @@ def advanched_widgets_options(self):
     # self.cameraArEntry.insert(ctk.END, '')
     self.cameraArEntry.configure(state='disabled')
 
-# def enable_advanched_widgets_options(self):
-#     enable_angle_option(self)
+    self.cameraFps_check_value = ctk.BooleanVar()
+    self.cameraFpsCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='CameraFps:', command=self.enable_cameraFps_option, variable=self.cameraFps_check_value, font=default_font)
+    self.cameraFpsCheckBox.grid(row=5, column=0, padx=10, pady=10)
 
-# def enable_angle_option(self):
-#     if not self.angle_check_value.get():
-#         try:
-#             self.angleLabel.destroy()
-#             self.angleEntry.destroy()
-#         except Exception as e:
-#             print(f'Error on enable_angle_option,\n{str(e)}')
+    self.cameraFpsEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=70, font=default_font)
+    self.cameraFpsEntry.grid(row=5, column=1, padx=10, pady=10)
+    self.cameraFpsEntry.insert(ctk.END, '30')
+    self.cameraFpsEntry.configure(state='disabled')
 
-#         return
+    self.cameraHighSpeed_check_value = ctk.BooleanVar()
+    self.cameraHighSpeedCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='CameraHighSpeed', command=False, variable=self.cameraHighSpeed_check_value, font=default_font)
+    self.cameraHighSpeedCheckBox.grid(row=5, column=2, padx=10, pady=10)
+
+    self.cameraSize_check_value = ctk.BooleanVar()
+    self.cameraSizeCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='CameraSize:', command=self.enable_cameraSize_option, variable=self.cameraSize_check_value, font=default_font)
+    self.cameraSizeCheckBox.grid(row=6, column=0, padx=10, pady=10)
+
+    self.cameraSizeEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.cameraSizeEntry.grid(row=6, column=1, padx=10, pady=10)
+    # self.cameraSizeEntry.insert(ctk.END, '')
+    self.cameraSizeEntry.configure(state='disabled')
+
+    self.captureOrientation_check_value = ctk.BooleanVar()
+    self.captureOrientationCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='CaptureOrientation:', command=self.enable_captureOrientation_option, variable=self.captureOrientation_check_value, font=default_font)
+    self.captureOrientationCheckBox.grid(row=6, column=2, padx=10, pady=10)
+
+    self.captureOrientationEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=70, font=default_font)
+    self.captureOrientationEntry.grid(row=6, column=3, padx=10, pady=10)
+    # self.captureOrientationEntry.insert(ctk.END, '')
+    self.captureOrientationEntry.configure(state='disabled')
+
+    self.crop_check_value = ctk.BooleanVar()
+    self.cropCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='Crop:', command=self.enable_crop_option, variable=self.crop_check_value, font=default_font)
+    self.cropCheckBox.grid(row=7, column=0, padx=10, pady=10)
+
+    self.cropEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.cropEntry.grid(row=7, column=1, padx=10, pady=10)
+    # self.cropEntry.insert(ctk.END, '')
+    self.cropEntry.configure(state='disabled')
     
-#     self.angleFrame = ctk.CTkFrame(self.advanchedWindow_frame, border_color='white', border_width=3,)
-#     self.angleFrame.grid(row=0, column=2, padx=5, pady=5)
+    self.disableScreenSaver_check_value = ctk.BooleanVar()
+    self.disableScreenSaverCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='DisableScreenSaver', command=False, variable=self.disableScreenSaver_check_value, font=default_font)
+    self.disableScreenSaverCheckBox.grid(row=7, column=2, padx=10, pady=10)
+
+    self.fullScreen_check_value = ctk.BooleanVar()
+    self.fullScreenCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='FullScreen', command=False, variable=self.fullScreen_check_value, font=default_font)
+    self.fullScreenCheckBox.grid(row=8, column=0, padx=10, pady=10)
+
+    self.forceAdbForward_check_value = ctk.BooleanVar()
+    self.forceAdbForwardCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='ForceAdbForward', variable=self.forceAdbForward_check_value, font=default_font)
+    self.forceAdbForwardCheckBox.grid(row=8, column=1, padx=10, pady=10)
+    
+    self.forceAdbForward_check_value = ctk.BooleanVar()
+    self.forceAdbForwardCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='ForceAdbForward', variable=self.forceAdbForward_check_value, font=default_font)
+    self.forceAdbForwardCheckBox.grid(row=8, column=1, padx=10, pady=10)
+
+    self.killAdbOnClose_check_value = ctk.BooleanVar()
+    self.killAdbOnCloseCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='killAdbOnClose', variable=self.killAdbOnClose_check_value, font=default_font)
+    self.killAdbOnCloseCheckBox.grid(row=8, column=2, padx=10, pady=10)
+
+    self.legacyPaste_check_value = ctk.BooleanVar()
+    self.legacyPasteCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='LegacyPaste', variable=self.legacyPaste_check_value, font=default_font)
+    self.legacyPasteCheckBox.grid(row=9, column=0, padx=10, pady=10)
+
+    self.maxSize_check_value = ctk.BooleanVar()
+    self.maxSizeCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='MaxSize:', command=self.enable_maxSize_option, variable=self.maxSize_check_value, font=default_font)
+    self.maxSizeCheckBox.grid(row=9, column=1, padx=10, pady=10)
+
+    self.maxSizeEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.maxSizeEntry.grid(row=9, column=2, padx=10, pady=10)
+    # self.maxSizeEntry.insert(ctk.END, '')
+    self.maxSizeEntry.configure(state='disabled')
+
+
+    self.maxFps_check_value = ctk.BooleanVar()
+    self.maxFpsCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='MaxFps:', command=self.enable_maxFps_option, variable=self.maxFps_check_value, font=default_font)
+    self.maxFpsCheckBox.grid(row=10, column=0, padx=10, pady=10)
+
+    self.maxFpsEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=70, font=default_font)
+    self.maxFpsEntry.grid(row=10, column=1, padx=10, pady=10)
+    # self.FpsEntry.insert(ctk.END, '')
+    self.maxFpsEntry.configure(state='disabled')
+
+    self.newDisplay_check_value = ctk.BooleanVar()
+    self.newDisplayCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NewDisplay:', command=self.enable_newDisplay_option, variable=self.newDisplay_check_value, font=default_font)
+    self.newDisplayCheckBox.grid(row=10, column=2, padx=10, pady=10)
+
+    self.newDisplayEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.newDisplayEntry.grid(row=10, column=3, padx=10, pady=10)
+    # self.newDisplayEntry.insert(ctk.END, '')
+    self.newDisplayEntry.configure(state='disabled')
+
+    self.noCleanUp_check_value = ctk.BooleanVar()
+    self.noCleanUpCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NoCleanUp', variable=self.noCleanUp_check_value, font=default_font)
+    self.noCleanUpCheckBox.grid(row=11, column=0, padx=10, pady=10)
+
+    self.noClipboardAutoSync_check_value = ctk.BooleanVar()
+    self.noClipboardAutoSyncCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NoClipboardAutoSync', variable=self.noClipboardAutoSync_check_value, font=default_font)
+    self.noClipboardAutoSyncCheckBox.grid(row=11, column=1, padx=10, pady=10)
+
+
+    self.noDownsizeOnError_check_value = ctk.BooleanVar()
+    self.noDownsizeOnErrorCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NoDownsizeOnError', variable=self.noDownsizeOnError_check_value, font=default_font)
+    self.noDownsizeOnErrorCheckBox.grid(row=11, column=2, padx=10, pady=10)
+
+    self.noKeyRepeat_check_value = ctk.BooleanVar()
+    self.noKeyRepeatCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NoKeyRepeat', variable=self.noKeyRepeat_check_value, font=default_font)
+    self.noKeyRepeatCheckBox.grid(row=12, column=0, padx=10, pady=10)
+
+
+    self.noMipMaps_check_value = ctk.BooleanVar()
+    self.noMipMapsCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NoMipMaps', variable=self.noMipMaps_check_value, font=default_font)
+    self.noMipMapsCheckBox.grid(row=12, column=1, padx=10, pady=10)
+
+    self.noMouseHover_check_value = ctk.BooleanVar()
+    self.noMouseHoverCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NoMouseHover', variable=self.noMouseHover_check_value, font=default_font)
+    self.noMouseHoverCheckBox.grid(row=12, column=2, padx=10, pady=10)
+
+
+
+    self.noPowerOn_check_value = ctk.BooleanVar()
+    self.noPowerOnCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NoPowerOn', variable=self.noPowerOn_check_value, font=default_font)
+    self.noPowerOnCheckBox.grid(row=13, column=0, padx=10, pady=10)
+
+
+    self.noVdDestroyContent_check_value = ctk.BooleanVar()
+    self.noVdDestroyContentCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NoVdDestroyContent', variable=self.noVdDestroyContent_check_value, font=default_font)
+    self.noVdDestroyContentCheckBox.grid(row=13, column=1, padx=10, pady=10)
+
+    self.noVdSystemDecorations_check_value = ctk.BooleanVar()
+    self.noVdSystemDecorationsCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='NoVdSystemDecorations', variable=self.noVdSystemDecorations_check_value, font=default_font)
+    self.noVdSystemDecorationsCheckBox.grid(row=13, column=2, padx=10, pady=10)
+
+    self.port_check_value = ctk.BooleanVar()
+    self.portCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='Port:', command=self.enable_port_option, variable=self.port_check_value, font=default_font)
+    self.portCheckBox.grid(row=14, column=0, padx=10, pady=10)
+
+    self.portEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.portEntry.grid(row=14, column=1, padx=10, pady=10)
+    self.portEntry.configure(state='disabled')
+
+    self.pauseOnExit_check_value = ctk.BooleanVar()
+    self.pauseOnExitCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='PauseOnExit:', command=self.enable_pauseOnExit_option, variable=self.pauseOnExit_check_value, font=default_font)
+    self.pauseOnExitCheckBox.grid(row=14, column=2, padx=10, pady=10)
+
+    self.pauseOnExitEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.pauseOnExitEntry.grid(row=14, column=3, padx=10, pady=10)
+    self.pauseOnExitEntry.configure(state='disabled')
+
+    self.powerOffOnClose_check_value = ctk.BooleanVar()
+    self.powerOffOnCloseCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='PowerOffOnClose', variable=self.powerOffOnClose_check_value, font=default_font)
+    self.powerOffOnCloseCheckBox.grid(row=15, column=0, padx=10, pady=10)
+
+    self.preferText_check_value = ctk.BooleanVar()
+    self.preferTextCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='PreferText', variable=self.preferText_check_value, font=default_font)
+    self.preferTextCheckBox.grid(row=15, column=1, padx=10, pady=10)
+
+    self.printFps_check_value = ctk.BooleanVar()
+    self.printFpsCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='PrintFps', variable=self.printFps_check_value, font=default_font)
+    self.printFpsCheckBox.grid(row=15, column=2, padx=10, pady=10)
+
+
+    
+    
+
+
+
+
+
+
 
 def enable_angle_option(self):
     if self.angle_check_value.get():
@@ -214,3 +369,60 @@ def enable_cameraAr_option(self):
         self.cameraArEntry.configure(state='normal')
     else:
         self.cameraArEntry.configure(state='disabled')
+
+def enable_cameraFps_option(self):
+    if self.cameraFps_check_value.get():
+        self.cameraFpsEntry.configure(state='normal')
+    else:
+        self.cameraFpsEntry.configure(state='disabled')
+
+def enable_cameraSize_option(self):
+    if self.cameraSize_check_value.get():
+        self.cameraSizeEntry.configure(state='normal')
+    else:
+        self.cameraSizeEntry.configure(state='disabled')
+
+def enable_captureOrientation_option(self):
+    if self.captureOrientation_check_value.get():
+        self.captureOrientationEntry.configure(state='normal')
+    else:
+        self.captureOrientationEntry.configure(state='disabled')
+
+def enable_crop_option(self):
+    if self.crop_check_value.get():
+        self.cropEntry.configure(state='normal')
+    else:
+        self.cropEntry.configure(state='disabled')
+
+
+def enable_maxSize_option(self):
+    if self.maxSize_check_value.get():
+        self.maxSizeEntry.configure(state='normal')
+    else:
+        self.maxSizeEntry.configure(state='disabled')
+
+
+def enable_maxFps_option(self):
+    if self.maxFps_check_value.get():
+        self.maxFpsEntry.configure(state='normal')
+    else:
+        self.maxFpsEntry.configure(state='disabled')
+
+def enable_newDisplay_option(self):
+    if self.newDisplay_check_value.get():
+        self.newDisplayEntry.configure(state='normal')
+    else:
+        self.newDisplayEntry.configure(state='disabled')
+
+def enable_port_option(self):
+    if self.port_check_value.get():
+        self.portEntry.configure(state='normal')
+    else:
+        self.portEntry.configure(state='disabled')
+
+def enable_pauseOnExit_option(self):
+    if self.pauseOnExit_check_value.get():
+        self.pauseOnExitEntry.configure(state='normal')
+    else:
+        self.pauseOnExitEntry.configure(state='disabled')
+
