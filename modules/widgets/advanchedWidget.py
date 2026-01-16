@@ -3,7 +3,7 @@ import tkinter as tk
 from modules.themes.themes import default_font, heading_font
 
 ADVANCHED_WINDOW_NAME = 'Advanched Options'
-ADVANCHED_WINDOW_GEOMETRY = '1000x1000'
+ADVANCHED_WINDOW_GEOMETRY = '1000x700'
 
 window = None
 def advanchedCheck(self):
@@ -44,7 +44,7 @@ def exitAdvanchedWindow_func(self):
 
 def advanched_widgets_options(self):
 
-    self.advanchedWindow_frame = ctk.CTkFrame(self.advanchedPopUpWindow, border_color='black', border_width=3)
+    self.advanchedWindow_frame = ctk.CTkScrollableFrame(self.advanchedPopUpWindow, border_color='black', border_width=3, height=500, width=850)
     self.advanchedWindow_frame.pack(padx=10, pady=10)
     
     self.alwaysOnTop_check_value = ctk.BooleanVar()
@@ -300,11 +300,238 @@ def advanched_widgets_options(self):
     self.printFpsCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='PrintFps', variable=self.printFps_check_value, font=default_font)
     self.printFpsCheckBox.grid(row=15, column=2, padx=10, pady=10)
 
-
+    self.pushTarget_check_value = ctk.BooleanVar()
+    self.pushTargetCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='PushTarget:', command=self.enable_pushTarget_option, variable=self.pushTarget_check_value, font=default_font)
+    self.pushTargetCheckBox.grid(row=16, column=0, padx=10, pady=10)
     
+    self.pushTargetEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=250, font=default_font)
+    self.pushTargetEntry.grid(row=16, column=1, padx=10, pady=10)
+    self.pushTargetEntry.insert(ctk.END, '/sdcard/Download')
+    self.pushTargetEntry.configure(state='disabled')
+
+    self.record_check_value = ctk.BooleanVar()
+    self.recordCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='Record:', command=self.enable_record_option, variable=self.record_check_value, font=default_font)
+    self.recordCheckBox.grid(row=16, column=2, padx=10, pady=10)
     
+    self.recordEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=250, font=default_font)
+    self.recordEntry.grid(row=16, column=3, padx=10, pady=10)
+    self.recordEntry.configure(state='disabled')
+    
+    self.recordFormats_check_value = ctk.BooleanVar()
+    self.recordFormatsCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='RecordFormats:', command=self.enable_recordFormats_option, variable=self.recordFormats_check_value, font=default_font)
+    self.recordFormatsCheckBox.grid(row=17, column=0, padx=10, pady=10)
+
+    self.recordFormats: list = ["mp4", "mkv", "m4a", "mka", "opus", "aac", "flac", "wav"]
+    self.recordFormats_value = ctk.StringVar()
+    self.recordFormats_value.set(self.recordFormats[0])
+
+    self.recordFormatsOptionMenu = ctk.CTkOptionMenu(self.advanchedWindow_frame, command=None, variable=self.recordFormats_value, values=self.recordFormats, font=default_font)
+    self.recordFormatsOptionMenu.grid(row=17, column=1, padx=10, pady=10)
+    self.recordFormatsOptionMenu.configure(state='disabled')
+
+    self.recordOrientation_check_value = ctk.BooleanVar()
+    self.recordOrientationCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='RecordOrientation:', command=self.enable_recordOrientation_option, variable=self.recordOrientation_check_value, font=default_font)
+    self.recordOrientationCheckBox.grid(row=17, column=2, padx=10, pady=10)
+
+    self.recordOrientation: list = ["0", "90", "180", "270"]
+    self.recordOrientation_value = ctk.StringVar()
+    self.recordOrientation_value.set(self.recordOrientation[0])
+
+    self.recordOrientationOptionMenu = ctk.CTkOptionMenu(self.advanchedWindow_frame, command=None, variable=self.recordOrientation_value, values=self.recordOrientation, font=default_font)
+    self.recordOrientationOptionMenu.grid(row=17, column=3, padx=10, pady=10)
+    self.recordOrientationOptionMenu.configure(state='disabled')
+
+    self.rawKeyEvents_check_value = ctk.BooleanVar()
+    self.rawKeyEventsCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='RawKeyEvents', variable=self.rawKeyEvents_check_value, font=default_font)
+    self.rawKeyEventsCheckBox.grid(row=18, column=0, padx=10, pady=10)
 
 
+    self.renderDriver_check_value = ctk.BooleanVar()
+    self.renderDriverCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='RenderDriver:', command=self.enable_renderDriver_option, variable=self.renderDriver_check_value, font=default_font)
+    self.renderDriverCheckBox.grid(row=18, column=1, padx=10, pady=10)
+
+    self.renderDrivers: list = ["direct3d", "opengl", "opengles2", "opengles", "metal", "software"]
+    self.renderDriver_value = ctk.StringVar()
+    self.renderDriver_value.set(self.renderDrivers[0])
+
+    self.renderDriverOptionMenu = ctk.CTkOptionMenu(self.advanchedWindow_frame, command=None, variable=self.renderDriver_value, values=self.renderDrivers, font=default_font)
+    self.renderDriverOptionMenu.grid(row=18, column=2, padx=10, pady=10)
+    self.renderDriverOptionMenu.configure(state='disabled')
+
+
+    self.requireAudio_check_value = ctk.BooleanVar()
+    self.requireAudioCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='RequireAudio', variable=self.requireAudio_check_value, font=default_font)
+    self.requireAudioCheckBox.grid(row=19, column=0, padx=10, pady=10)
+
+    self.turnScreenOff_check_value = ctk.BooleanVar()
+    self.turnScreenOffCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='turnScreenOff', variable=self.turnScreenOff_check_value, font=default_font)
+    self.turnScreenOffCheckBox.grid(row=19, column=1, padx=10, pady=10)
+
+    self.screenOffTimeout_check_value = ctk.BooleanVar()
+    self.screenOffTimeoutCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='screenOffTimeout:', command=self.enable_screenOffTimeout_option, variable=self.screenOffTimeout_check_value, font=default_font)
+    self.screenOffTimeoutCheckBox.grid(row=19, column=2, padx=10, pady=10)
+    
+    self.screenOffTimeoutEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=70, font=default_font)
+    self.screenOffTimeoutEntry.grid(row=19, column=3, padx=10, pady=10)
+    self.screenOffTimeoutEntry.configure(state='disabled')
+
+
+    self.shortcutMod_check_value = ctk.BooleanVar()
+    self.shortcutModCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='ShortcutMod:', command=self.enable_shortcutMod_option, variable=self.shortcutMod_check_value, font=default_font)
+    self.shortcutModCheckBox.grid(row=20, column=0, padx=10, pady=10)
+
+    self.shortcutMods: list = ["lctrl", "rctrl", "lalt", "ralt", "lsuper", "rsuper"]
+    self.shortcutMod_value = ctk.StringVar()
+    self.shortcutMod_value.set(self.shortcutMods[0])
+
+    self.shortcutModOptionMenu = ctk.CTkOptionMenu(self.advanchedWindow_frame, command=None, variable=self.shortcutMod_value, values=self.shortcutMods, font=default_font)
+    self.shortcutModOptionMenu.grid(row=20, column=1, padx=10, pady=10)
+    self.shortcutModOptionMenu.configure(state='disabled')
+
+    self.startApp_check_value = ctk.BooleanVar()
+    self.startAppCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='StartApp:', command=self.enable_startApp_option, variable=self.startApp_check_value, font=default_font)
+    self.startAppCheckBox.grid(row=20, column=2, padx=10, pady=10)
+    
+    self.startAppEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.startAppEntry.grid(row=20, column=3, padx=10, pady=10)
+    self.startAppEntry.configure(state='disabled')
+
+    self.showTouches_check_value = ctk.BooleanVar()
+    self.showTouchesCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='ShowTouches', variable=self.showTouches_check_value, font=default_font)
+    self.showTouchesCheckBox.grid(row=21, column=0, padx=10, pady=10)
+
+    self.timeLimit_check_value = ctk.BooleanVar()
+    self.timeLimitCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='TimeLimit:', command=self.enable_timeLimit_option, variable=self.timeLimit_check_value, font=default_font)
+    self.timeLimitCheckBox.grid(row=21, column=1, padx=10, pady=10)
+    
+    self.timeLimitEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.timeLimitEntry.grid(row=21, column=2, padx=10, pady=10)
+    self.timeLimitEntry.configure(state='disabled')
+
+
+    self.tunnelHost_check_value = ctk.BooleanVar()
+    self.tunnelHostCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='TunnelHost:', command=self.enable_tunnelHost_option, variable=self.tunnelHost_check_value, font=default_font)
+    self.tunnelHostCheckBox.grid(row=22, column=0, padx=10, pady=10)
+    
+    self.tunnelHostEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.tunnelHostEntry.grid(row=22, column=1, padx=10, pady=10)
+    self.tunnelHostEntry.configure(state='disabled')
+
+
+    self.tunnelPort_check_value = ctk.BooleanVar()
+    self.tunnelPortCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='TunnelPort:', command=self.enable_tunnelPort_option, variable=self.tunnelPort_check_value, font=default_font)
+    self.tunnelPortCheckBox.grid(row=22, column=2, padx=10, pady=10)
+    
+    self.tunnelPortEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.tunnelPortEntry.grid(row=22, column=3, padx=10, pady=10)
+    self.tunnelPortEntry.configure(state='disabled')
+
+    self.v4l2Sink_check_value = ctk.BooleanVar()
+    self.v4l2SinkCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='V4l2Sink:', command=self.enable_v4l2Sink_option, variable=self.v4l2Sink_check_value, font=default_font)
+    self.v4l2SinkCheckBox.grid(row=23, column=0, padx=10, pady=10)
+    
+    self.v4l2SinkEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.v4l2SinkEntry.grid(row=23, column=1, padx=10, pady=10)
+    self.v4l2SinkEntry.insert(ctk.END, '/dev/video0')
+    self.v4l2SinkEntry.configure(state='disabled')
+
+    self.v4l2Buffer_check_value = ctk.BooleanVar()
+    self.v4l2BufferCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='V4l2Buffer:', command=self.enable_v4l2Buffer_option, variable=self.v4l2Buffer_check_value, font=default_font)
+    self.v4l2BufferCheckBox.grid(row=23, column=2, padx=10, pady=10)
+    
+    self.v4l2BufferEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.v4l2BufferEntry.grid(row=23, column=3, padx=10, pady=10)
+    self.v4l2BufferEntry.insert(ctk.END, '0')
+    self.v4l2BufferEntry.configure(state='disabled')
+
+    self.videoCodec_check_value = ctk.BooleanVar()
+    self.videoCodecCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='VideoCodec:', command=self.enable_videoCodec_option, variable=self.videoCodec_check_value, font=default_font)
+    self.videoCodecCheckBox.grid(row=24, column=0, padx=10, pady=10)
+
+    self.videoCodecs: list = ["h264", "h265", "av1"]
+    self.videoCodec_value = ctk.StringVar()
+    self.videoCodec_value.set(self.videoCodecs[0])
+
+    self.videoCodecOptionMenu = ctk.CTkOptionMenu(self.advanchedWindow_frame, command=None, variable=self.videoCodec_value, values=self.videoCodecs, font=default_font)
+    self.videoCodecOptionMenu.grid(row=24, column=1, padx=10, pady=10)
+    self.videoCodecOptionMenu.configure(state='disabled')
+
+    self.videoBuffer_check_value = ctk.BooleanVar()
+    self.videoBufferCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='VideoBuffer:', command=self.enable_videoBuffer_option, variable=self.videoBuffer_check_value, font=default_font)
+    self.videoBufferCheckBox.grid(row=24, column=2, padx=10, pady=10)
+    
+    self.videoBufferEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.videoBufferEntry.grid(row=24, column=3, padx=10, pady=10)
+    self.videoBufferEntry.insert(ctk.END, '0')
+    self.videoBufferEntry.configure(state='disabled')
+
+
+    self.videoEncoder_check_value = ctk.BooleanVar()
+    self.videoEncoderCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='VideoEncoder:', command=self.enable_videoEncoder_option, variable=self.videoEncoder_check_value, font=default_font)
+    self.videoEncoderCheckBox.grid(row=25, column=0, padx=10, pady=10)
+
+    self.videoEncoders: list = []
+    self.videoEncoder_value = ctk.StringVar()
+    # self.videoEncoder_value.set(self.videoEncoders[0])
+
+    self.videoEncoderOptionMenu = ctk.CTkOptionMenu(self.advanchedWindow_frame, command=None, variable=self.videoEncoder_value, values=self.videoEncoders, font=default_font)
+    self.videoEncoderOptionMenu.grid(row=25, column=1, padx=10, pady=10)
+    self.videoEncoderOptionMenu.configure(state='disabled')
+
+
+    self.stayAwake_check_value = ctk.BooleanVar()
+    self.stayAwakeCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='StayAwake', variable=self.stayAwake_check_value, font=default_font)
+    self.stayAwakeCheckBox.grid(row=25, column=2, padx=10, pady=10)
+
+    self.windowBorderless_check_value = ctk.BooleanVar()
+    self.windowBorderlessCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='WindowBorderless', variable=self.windowBorderless_check_value, font=default_font)
+    self.windowBorderlessCheckBox.grid(row=26, column=0, padx=10, pady=10)
+
+    self.windowTitle_check_value = ctk.BooleanVar()
+    self.windowTitleCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='WindowTitle:', command=self.enable_windowTitle_option, variable=self.windowTitle_check_value, font=default_font)
+    self.windowTitleCheckBox.grid(row=26, column=1, padx=10, pady=10)
+    
+    self.windowTitleEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.windowTitleEntry.grid(row=26, column=2, padx=10, pady=10)
+    self.windowTitleEntry.insert(ctk.END, 'auto')
+    self.windowTitleEntry.configure(state='disabled')
+
+
+    self.windowX_check_value = ctk.BooleanVar()
+    self.windowXCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='WindowX:', command=self.enable_windowX_option, variable=self.windowX_check_value, font=default_font)
+    self.windowXCheckBox.grid(row=27, column=0, padx=10, pady=10)
+    
+    self.windowXEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.windowXEntry.grid(row=27, column=1, padx=10, pady=10)
+    self.windowXEntry.insert(ctk.END, 'auto')
+    self.windowXEntry.configure(state='disabled')
+
+    self.windowY_check_value = ctk.BooleanVar()
+    self.windowYCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='WindowY:', command=self.enable_windowY_option, variable=self.windowY_check_value, font=default_font)
+    self.windowYCheckBox.grid(row=27, column=2, padx=10, pady=10)
+    
+    self.windowYEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.windowYEntry.grid(row=27, column=3, padx=10, pady=10)
+    self.windowYEntry.insert(ctk.END, 'auto')
+    self.windowYEntry.configure(state='disabled')
+
+    self.windowWidth_check_value = ctk.BooleanVar()
+    self.windowWidthCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='WindowWidth:', command=self.enable_windowWidth_option, variable=self.windowWidth_check_value, font=default_font)
+    self.windowWidthCheckBox.grid(row=28, column=0, padx=10, pady=10)
+    
+    self.windowWidthEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.windowWidthEntry.grid(row=28, column=1, padx=10, pady=10)
+    self.windowWidthEntry.insert(ctk.END, '0')
+    self.windowWidthEntry.configure(state='disabled')
+
+    self.windowHeight_check_value = ctk.BooleanVar()
+    self.windowHeightCheckBox = ctk.CTkCheckBox(self.advanchedWindow_frame, text='WindowHeight:', command=self.enable_windowHeight_option, variable=self.windowHeight_check_value, font=default_font)
+    self.windowHeightCheckBox.grid(row=28, column=2, padx=10, pady=10)
+    
+    self.windowHeightEntry = ctk.CTkEntry(self.advanchedWindow_frame, width=150, font=default_font)
+    self.windowHeightEntry.grid(row=28, column=3, padx=10, pady=10)
+    self.windowHeightEntry.insert(ctk.END, '0')
+    self.windowHeightEntry.configure(state='disabled')
 
 
 
@@ -426,3 +653,128 @@ def enable_pauseOnExit_option(self):
     else:
         self.pauseOnExitEntry.configure(state='disabled')
 
+def enable_pushTarget_option(self):
+    if self.pushTarget_check_value.get():
+        self.pushTargetEntry.configure(state='normal')
+    else:
+        self.pushTargetEntry.configure(state='disabled')
+
+def enable_record_option(self):
+    if self.record_check_value.get():
+        self.recordEntry.configure(state='normal')
+    else:
+        self.recordEntry.configure(state='disabled')
+
+def enable_recordFormats_option(self):
+    if self.recordFormats_check_value.get():
+        self.recordFormatsOptionMenu.configure(state='normal')
+    else:
+        self.recordFormatsOptionMenu.configure(state='disabled')
+
+def enable_recordOrientation_option(self):
+    if self.recordOrientation_check_value.get():
+        self.recordOrientationOptionMenu.configure(state='normal')
+    else:
+        self.recordOrientationOptionMenu.configure(state='disabled')
+
+def enable_renderDriver_option(self):
+    if self.renderDriver_check_value.get():
+        self.renderDriverOptionMenu.configure(state='normal')
+    else:
+        self.renderDriverOptionMenu.configure(state='disabled')
+
+def enable_screenOffTimeout_option(self):
+    if self.screenOffTimeout_check_value.get():
+        self.screenOffTimeoutEntry.configure(state='normal')
+    else:
+        self.screenOffTimeoutEntry.configure(state='disabled')
+
+def enable_shortcutMod_option(self):
+    if self.shortcutMod_check_value.get():
+        self.shortcutModOptionMenu.configure(state='normal')
+    else:
+        self.shortcutModOptionMenu.configure(state='disabled')
+
+def enable_startApp_option(self):
+    if self.startApp_check_value.get():
+        self.startAppEntry.configure(state='normal')
+    else:
+        self.startAppEntry.configure(state='disabled')
+
+def enable_timeLimit_option(self):
+    if self.timeLimit_check_value.get():
+        self.timeLimitEntry.configure(state='normal')
+    else:
+        self.timeLimitEntry.configure(state='disabled')
+
+def enable_tunnelHost_option(self):
+    if self.tunnelHost_check_value.get():
+        self.tunnelHostEntry.configure(state='normal')
+    else:
+        self.tunnelHostEntry.configure(state='disabled')
+
+def enable_tunnelPort_option(self):
+    if self.tunnelPort_check_value.get():
+        self.tunnelPortEntry.configure(state='normal')
+    else:
+        self.tunnelPortEntry.configure(state='disabled')
+
+def enable_v4l2Sink_option(self):
+    if self.v4l2Sink_check_value.get():
+        self.v4l2SinkEntry.configure(state='normal')
+    else:
+        self.v4l2SinkEntry.configure(state='disabled')
+
+def enable_v4l2Buffer_option(self):
+    if self.v4l2Buffer_check_value.get():
+        self.v4l2BufferEntry.configure(state='normal')
+    else:
+        self.v4l2BufferEntry.configure(state='disabled')
+
+def enable_videoCodec_option(self):
+    if self.videoCodec_check_value.get():
+        self.videoCodecOptionMenu.configure(state='normal')
+    else:
+        self.videoCodecOptionMenu.configure(state='disabled')
+
+def enable_videoBuffer_option(self):
+    if self.videoBuffer_check_value.get():
+        self.videoBufferEntry.configure(state='normal')
+    else:
+        self.videoBufferEntry.configure(state='disabled')
+
+def enable_videoEncoder_option(self):
+    if self.videoEncoder_check_value.get():
+        self.videoEncoderOptionMenu.configure(state='normal')
+    else:
+        self.videoEncoderOptionMenu.configure(state='disabled')
+
+def enable_windowTitle_option(self):
+    if self.windowTitle_check_value.get():
+        self.windowTitleEntry.configure(state='normal')
+    else:
+        self.windowTitleEntry.configure(state='disabled')
+
+def enable_windowX_option(self):
+    if self.windowX_check_value.get():
+        self.windowXEntry.configure(state='normal')
+    else:
+        self.windowXEntry.configure(state='disabled')
+
+def enable_windowY_option(self):
+    if self.windowY_check_value.get():
+        self.windowYEntry.configure(state='normal')
+    else:
+        self.windowYEntry.configure(state='disabled')
+
+def enable_windowWidth_option(self):
+    if self.windowWidth_check_value.get():
+        self.windowWidthEntry.configure(state='normal')
+    else:
+        self.windowWidthEntry.configure(state='disabled')
+
+def enable_windowHeight_option(self):
+    if self.windowHeight_check_value.get():
+        self.windowHeightEntry.configure(state='normal')
+    else:
+        self.windowHeightEntry.configure(state='disabled')
