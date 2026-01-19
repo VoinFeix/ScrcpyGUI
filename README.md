@@ -11,8 +11,7 @@ Screenshots:
 
 2. Advanched Window Tab (Advanched Window is not functional yet!!)
 
-<img width="650" height="650" alt="advanchedTab" src="https://github.com/user-attachments/assets/07711991-6ce8-478f-8a4f-05c3b3e43bdf" />
-
+<img width="1000" height="700" alt="advanchedWindows_updated" src="https://github.com/user-attachments/assets/6343eb5b-a467-451a-8193-2a294a3c52df" />
 
 
 
