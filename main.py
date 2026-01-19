@@ -16,8 +16,8 @@ from modules.utils import runScrcpy
 
 from modules.logging import Logs
 
-HEIGHT = 1200
-WIDTH = 800
+HEIGHT = 860
+WIDTH = 700
 GEOMETRY = f'{HEIGHT}x{WIDTH}'
 MAIN_WINDOW_NAME = 'ScrcpyGUI'
 APPEARANCEMODE = 'dark'
@@ -121,6 +121,10 @@ class ScrcpyGUI:
     def advanched_widget(self):
         advanchedWidget.advanched_widget(self)
         # advanchedWidget.AdvanchedWindow()
+
+    # def audioOptionFrame_func(self):
+        # advanchedWidget.audioOptionFrame_func(self)
+
 
     def advanched_widgets_options(self):
         advanchedWidget.advanched_widgets_options(self)
@@ -239,7 +243,7 @@ class ScrcpyGUI:
 
     def enable_windowWidth_option(self):
         advanchedWidget.enable_windowWidth_option(self)
-        
+    
 
     def enable_windowHeight_option(self):
         advanchedWidget.enable_windowHeight_option(self)
