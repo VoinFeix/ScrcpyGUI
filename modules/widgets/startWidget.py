@@ -10,6 +10,11 @@ def startCheck(self):
 def start_widget(self):
     self.runScrcpyButton = ctk.CTkButton(self.startFrame, text='Run', width=20, height=5, command=self.runScrcpy, font=default_font)
     self.runScrcpyButton.grid(row=0, column=1, padx=10, pady=10)
+    
+    self.stopScrcpyButton = ctk.CTkButton(self.startFrame, text='Stop', width=20, height=5, command=self.stopScrcpy, font=default_font)
+    self.stopScrcpyButton.grid(row=0, column=2, padx=10, pady=10)
 
     self.exitScrcpyButton = ctk.CTkButton(self.startFrame, text='Exit', width=20, height=5, command=self.exitScrcpy_func, font=default_font)
-    self.exitScrcpyButton.grid(row=0, column=2,padx=10, pady=10)
+    self.exitScrcpyButton.grid(row=0, column=3,padx=10, pady=10)
+
+

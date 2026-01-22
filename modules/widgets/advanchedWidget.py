@@ -49,24 +49,13 @@ def audioOptionFrame_func(self, master):
     self.audioOptionFrame.grid(row=0, column=0, padx=10, pady=10)
     ctk.CTkLabel(self.audioOptionFrame, text='-: Audio :-', font=frame_font).grid(row=0, column=0, padx=10, pady=10)
 
-    
-    self.angle_check_value = ctk.BooleanVar()
-    self.angleCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='Angle:', command=self.enable_angle_option, variable=self.angle_check_value, font=default_font)
-    self.angleCheckBox.grid(row=1, column=0, padx=10, pady=10)
-
-    self.angleEntry = ctk.CTkEntry(self.audioOptionFrame, width=150, font=default_font)
-    self.angleEntry.grid(row=1, column=1, padx=10, pady=10)
-    self.angleEntry.insert(ctk.END, '360')
-    self.angleEntry.configure(state='disabled')
-
-
 
     self.audioBitRate_check_value = ctk.BooleanVar()
     self.audioBitRateCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='AudioBitRate:', command=self.enable_audioBitRate_option, variable=self.audioBitRate_check_value, font=default_font)
-    self.audioBitRateCheckBox.grid(row=2, column=0, padx=10, pady=10)
+    self.audioBitRateCheckBox.grid(row=1, column=0, padx=10, pady=10)
 
     self.audioBitRateEntry = ctk.CTkEntry(self.audioOptionFrame, width=150, font=default_font)
-    self.audioBitRateEntry.grid(row=2, column=1, padx=10, pady=10)
+    self.audioBitRateEntry.grid(row=1, column=1, padx=10, pady=10)
     self.audioBitRateEntry.insert(ctk.END, '128K')
     self.audioBitRateEntry.configure(state='disabled')
 
@@ -74,53 +63,54 @@ def audioOptionFrame_func(self, master):
 
     self.audioBuffer_check_value = ctk.BooleanVar()
     self.audioBufferCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='AudioBuffer:', command=self.enable_audioBuffer_option, variable=self.audioBuffer_check_value, font=default_font)
-    self.audioBufferCheckBox.grid(row=3, column=0, padx=10, pady=10)
+    self.audioBufferCheckBox.grid(row=2, column=0, padx=10, pady=10)
 
     self.audioBufferEntry = ctk.CTkEntry(self.audioOptionFrame, width=150, font=default_font)
-    self.audioBufferEntry.grid(row=3, column=1, padx=10, pady=10)
+    self.audioBufferEntry.grid(row=2, column=1, padx=10, pady=10)
     self.audioBufferEntry.insert(ctk.END, '50')
     self.audioBufferEntry.configure(state='disabled')
 
 
     self.audioOutputBuffer_check_value = ctk.BooleanVar()
     self.audioOutputBufferCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='AudioOutputBuffer:', variable=self.audioOutputBuffer_check_value, command=self.enable_audioOutputBuffer_option, font=default_font)
-    self.audioOutputBufferCheckBox.grid(row=4, column=0, padx=10, pady=10)
+    self.audioOutputBufferCheckBox.grid(row=3, column=0, padx=10, pady=10)
 
     self.audioOutputBufferEntry = ctk.CTkEntry(self.audioOptionFrame, width=150, font=default_font)
-    self.audioOutputBufferEntry.grid(row=4, column=1, padx=10, pady=10)
+    self.audioOutputBufferEntry.grid(row=3, column=1, padx=10, pady=10)
     self.audioOutputBufferEntry.insert(ctk.END, '5')
     self.audioOutputBufferEntry.configure(state='disabled')
 
 
     self.audioCodec_check_value = ctk.BooleanVar()
     self.audioCodecCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='AudioCodec:', command=self.enable_audioCodec_option, variable=self.audioCodec_check_value, font=default_font)
-    self.audioCodecCheckBox.grid(row=5, column=0, padx=10, pady=10)
+    self.audioCodecCheckBox.grid(row=4, column=0, padx=10, pady=10)
 
     self.audioCodecOptions: list = ["opus", "aac", "flac", "raw"]
     self.audioCodec_value = ctk.StringVar()
     self.audioCodec_value.set(self.audioCodecOptions[0])
 
     self.audioCodecOptionMenu = ctk.CTkOptionMenu(self.audioOptionFrame, variable=self.audioCodec_value, values=self.audioCodecOptions, font=default_font)
-    self.audioCodecOptionMenu.grid(row=5, column=1, padx=10, pady=10)
+    self.audioCodecOptionMenu.grid(row=4, column=1, padx=10, pady=10)
     self.audioCodecOptionMenu.configure(state='disabled')   
+    
 
 
     self.audioEncoder_check_value = ctk.BooleanVar()
     self.audioEncoderCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='AudioEncoder:', command=self.enable_audioEncoder_option, variable=self.audioEncoder_check_value, font=default_font)
-    self.audioEncoderCheckBox.grid(row=6, column=0, padx=10, pady=10)
+    self.audioEncoderCheckBox.grid(row=5, column=0, padx=10, pady=10)
 
     self.audioEncoders: list = ["Sample"]
     self.audioEncoder_value = ctk.StringVar()
     self.audioEncoder_value.set(self.audioEncoders[0])
 
     self.audioEncoderOptionMenu = ctk.CTkOptionMenu(self.audioOptionFrame, variable=self.audioEncoder_value, values=self.audioEncoders, font=default_font)
-    self.audioEncoderOptionMenu.grid(row=6, column=1, padx=10, pady=10)
+    self.audioEncoderOptionMenu.grid(row=5, column=1, padx=10, pady=10)
     self.audioEncoderOptionMenu.configure(state='disabled')
 
 
     self.audioDup_check_value = ctk.BooleanVar()
     self.audioDupCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='AudioDup', command=False, variable=self.audioDup_check_value, font=default_font)
-    self.audioDupCheckBox.grid(row=7, column=0, padx=10, pady=10)
+    self.audioDupCheckBox.grid(row=6, column=0, padx=10, pady=10)
     self.audioDupCheckBox.configure(state='disabled')
     self.get_audioDup_option()
 
@@ -692,6 +682,10 @@ def otherOptionFrame_func(self, master):
 
 
 
+
+
+
+
 def advanched_widgets_options(self):
     self.advanchedWindow_frame = ctk.CTkScrollableFrame(self.advanchedPopUpWindow, border_color='black', border_width=3, height=500, width=900)
     self.advanchedWindow_frame.pack(padx=10, pady=10)
@@ -721,6 +715,10 @@ def advanched_widgets_options(self):
     appOptionFrame_func(self, self.advanchedWindow_frame)
 
     otherOptionFrame_func(self, self.advanchedWindow_frame)
+
+
+
+
 
 
 

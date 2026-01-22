@@ -1,8 +1,452 @@
 import subprocess
 import threading
+from tkinter import N
+
+def getAudioOptionFrameValues(self):
+    
+    audioBitRate = None
+    if self.audioBitRate_check_value.get():
+        audioBitRate = self.audioBitRateEntry.get()
+
+    audioBuffer = None
+    if self.audioBuffer_check_value.get():
+        audioBuffer = self.audioBufferEntry.get()
+
+    audioOutputBuffer = None
+    if self.audioOutputBuffer_check_value.get():
+        audioOutputBuffer = self.audioOutputBufferEntry.get()
+    
+    audioCodec = None
+    if self.audioCodec_check_value.get():
+        audioCodec = self.audioCodec_value.get()
+    
+    audioEncoder = None
+    if self.audioEncoder_check_value.get():
+        audioEncoder = self.audioEncoder_value.get()
+
+    audioDup = None
+    if self.audioDup_check_value.get():
+        audioDup = self.audioDup_check_value.get()
+
+    return audioBitRate, audioBuffer, audioOutputBuffer, audioCodec, audioEncoder, audioDup
+
+
+def getVideoOptionFrameValues(self):
+
+    videoBitRate = None
+    if self.videoBitRate_check_value.get():
+        videoBitRate = self.videoBitRateEntry.get()
+
+    videoBuffer = None
+    if self.videoBuffer_check_value.get():
+        videoBuffer = self.videoBufferEntry.get()
+
+    videoCodec = None
+    if self.videoCodec_check_value.get():
+        videoCodec = self.videoCodec_value.get()
+
+    videoEncoder = None
+    if self.videoEncoder_check_value.get():
+        videoEncoder = self.videoEncoder_value.get()
+    
+    return videoBitRate, videoBuffer, videoCodec, videoEncoder
+
+
+def getCameraOptionFrameValues(self):
+    cameraAr = None
+    if self.cameraAr_check_value.get():
+        cameraAr = self.cameraArEntry.get()
+
+    cameraFps = None
+    if self.cameraFps_check_value.get():
+        cameraFps = self.cameraFpsEntry.get()
+
+    cameraSize = None
+    if self.cameraSize_check_value.get():
+        cameraSize = self.cameraSizeEntry.get()
+    
+    cameraHighSpeed = None
+    if self.cameraHighSpeed_check_value.get():
+        cameraHighSpeed = self.cameraHighSpeed_check_value.get()
+
+    return cameraAr, cameraFps, cameraSize, cameraHighSpeed
+
+
+def getWindowOptionFrameValues(self):
+    windowTitle = None
+    if self.windowTitle_check_value.get():
+        windowTitle = self.windowTitleEntry.get()
+
+    windowX = None
+    if self.windowX_check_value.get():
+        windowX = self.windowXEntry.get()
+    
+    windowY = None
+    if self.windowY_check_value.get():
+        windowY = self.windowYEntry.get()
+
+    windowWidth = None
+    if self.windowWidth_check_value.get():
+        windowWidth = self.windowWidthEntry.get()
+
+    windowHeight = None
+    if self.windowHeight_check_value.get():
+        windowHeight = self.windowHeightEntry.get()
+
+    newDisplay = None
+    if self.newDisplay_check_value.get():
+        newDisplay = self.newDisplayEntry.get()
+
+    maxSize = None
+    if self.maxSize_check_value.get():
+        maxSize = self.maxSizeEntry.get()
+    
+    crop = None
+    if self.crop_check_value.get():
+        crop = self.cropEntry.get()
+
+    angle = None
+    if self.angle_check_value.get():
+        angle = self.angleEntry.get()
+    
+    alwaysOnTop = None
+    if self.alwaysOnTop_check_value.get():
+        alwaysOnTop = self.alwaysOnTop_check_value.get()
+
+    fullScreen = None
+    if self.fullScreen_check_value.get():
+        fullScreen = self.fullScreen_check_value.get()
+    
+    windowBorderless = None
+    if self.windowBorderless_check_value.get():
+        windowBorderless = self.windowBorderless_check_value.get()
+    
+    return windowTitle, windowX, windowY, windowWidth, windowHeight, newDisplay, maxSize, crop, angle, alwaysOnTop, fullScreen, windowBorderless
+
+
+def getControlOptionFrameValues(self):
+
+    maxFps = None
+    if self.maxFps_check_value.get():
+        maxFps = self.maxFpsEntry.get()
+
+    shortCutMod = None
+    if self.shortcutMod_check_value.get():
+        shortCutMod = self.shortcutMod_value.get()
+
+    forceAdbForward = None
+    if self.forceAdbForward_check_value.get():
+        forceAdbForward = self.forceAdbForward_check_value.get()
+
+    killAdbOnClose = None
+    if self.killAdbOnClose_check_value.get():
+        killAdbOnClose = self.killAdbOnClose_check_value.get()
+
+    noKeyRepeat = None
+    if self.noKeyRepeat_check_value.get():
+        noKeyRepeat = self.noKeyRepeat_check_value.get()
+
+    rawKeyEvents = None
+    if self.rawKeyEvents_check_value.get():
+        rawKeyEvents = self.rawKeyEvents_check_value.get()
+
+    legacyPaste = None
+    if self.legacyPaste_check_value.get():
+        legacyPaste = self.legacyPaste_check_value.get()
+
+    showTouches = None
+    if self.showTouches_check_value.get():
+        showTouches = self.showTouches_check_value.get()
+
+    noMouseHover = None
+    if self.noMouseHover_check_value.get():
+        noMouseHover = self.noMouseHover_check_value.get()
+    
+    return maxFps, shortCutMod, forceAdbForward, killAdbOnClose, noKeyRepeat, rawKeyEvents, legacyPaste, showTouches, noMouseHover
+
+
+def getPowerOptionFrameValues(self):
+    pauseOnExit = None
+    if self.pauseOnExit_check_value.get():
+        pauseOnExit = self.pauseOnExitEntry.get()
+
+    screenOffTimeout = None
+    if self.screenOffTimeout_check_value.get():
+        screenOffTimeout = self.screenOffTimeoutEntry.get()
+
+    timeLimit = None
+    if self.timeLimit_check_value.get():
+        timeLimit = self.timeLimitEntry.get()
+
+    noPowerOn = None
+    if self.noPowerOn_check_value.get():
+        noPowerOn = self.noPowerOn_check_value.get()
+
+    turnScreenOff = None
+    if self.turnScreenOff_check_value.get():
+        turnScreenOff = self.turnScreenOff_check_value.get()
+
+    powerOffOnClose = None
+    if self.powerOffOnClose_check_value.get():
+        powerOffOnClose = self.powerOffOnClose_check_value.get()
+
+    disableScreenSaver = None
+    if self.disableScreenSaver_check_value.get():
+        disableScreenSaver = self.disableScreenSaver_check_value.get()
+
+    stayAwake = None
+    if self.stayAwake_check_value.get():
+        stayAwake = self.stayAwake_check_value.get()
+
+
+    return pauseOnExit, screenOffTimeout, timeLimit, noPowerOn, turnScreenOff, powerOffOnClose, disableScreenSaver, stayAwake
+
+
+def getRecordOptionFrameValues(self):
+    record = None
+    if self.record_check_value.get():
+        record = self.recordEntry.get()
+
+    recordFormats = None
+    if self.recordFormats_check_value.get():
+        recordFormats = self.recordFormats_value.get()
+
+    recordOrientation = None
+    if self.recordOrientation_check_value.get():
+        recordOrientation = self.recordOrientation_value.get()
+
+    return record, recordFormats, recordOrientation
+
+
+def getConnectionsOptionFrameValues(self):
+    port = None
+    if self.port_check_value.get():
+        port = self.portEntry.get()
+
+    tunnelHost = None
+    if self.tunnelHost_check_value.get():
+        tunnelHost = self.tunnelHostEntry.get()
+
+    tunnelPort = None
+    if self.tunnelPort_check_value.get():
+        tunnelPort = self.tunnelPortEntry.get()
+
+    return port, tunnelHost, tunnelPort
+
+
+def getVirtualDisplayOptionFrameValues(self):
+    
+    noVdDestroyContent = None
+    if self.noVdDestroyContent_check_value.get():
+        noVdDestroyContent = self.noVdDestroyContent_check_value.get()
+
+    noVdSystemDecorations = None
+    if self.noVdSystemDecorations_check_value.get():
+        noVdSystemDecorations = self.noVdSystemDecorations_check_value.get()
+    
+    return noVdDestroyContent, noVdSystemDecorations
+
+def getV4l2OptionFrameValues(self):
+    v4l2Sink = None
+    if self.v4l2Sink_check_value.get():
+        v4l2Sink = self.v4l2SinkEntry.get()
+
+    v4l2Buffer = None
+    if self.v4l2Buffer_check_value.get():
+        v4l2Buffer = self.v4l2BufferEntry.get()
+
+    return v4l2Sink, v4l2Buffer
+
+def getRenderDriversOptionFrameValues(self):
+    renderDriver = None
+    if self.renderDriver_check_value.get():
+        renderDriver = self.renderDriver_value.get()
+    
+    return renderDriver
+
+def getAppsOptionFrameValues(self):
+    startApp = None
+    if self.startApp_check_value.get():
+        startApp = self.startAppEntry.get()
+
+    return startApp
+
+def getOtherOptionFrameValues(self):
+    pushTarget = None
+    if self.pushTarget_check_value.get():
+        pushTarget = self.pushTargetEntry.get()
+    
+    captureOrientation = None
+    if self.captureOrientation_check_value.get():
+        captureOrientation = self.captureOrientationEntry.get()
+
+    noCleanUp = None
+    if self.noCleanUp_check_value.get():
+        noCleanUp = self.noCleanUp_check_value.get()
+    
+    noClipboardAutoSync = None
+    if self.noClipboardAutoSync_check_value.get():
+        noClipboardAutoSync = self.noClipboardAutoSync_check_value.get()
+
+    noDownsizeOnError = None
+    if self.noDownsizeOnError_check_value.get():
+        noDownsizeOnError = self.noDownsizeOnError_check_value.get()
+    
+    noMipMaps = None
+    if self.noMipMaps_check_value.get():
+        noMipMaps = self.noMipMaps_check_value.get()
+    
+    printFps = None
+    if self.printFps_check_value.get():
+        printFps = self.printFps_check_value.get()
+
+    preferText = None
+    if self.preferText_check_value.get():
+        preferText = self.preferText_check_value.get()
+    
+    requireAudio = None
+    if self.requireAudio_check_value.get():
+        requireAudio = self.requireAudio_check_value.get()
+
+    return pushTarget, captureOrientation, noCleanUp, noClipboardAutoSync, noDownsizeOnError, noMipMaps, printFps, preferText, requireAudio
+
+def getValuesFromAdvanchedWidget(self):
+    audioBitRate, audioBuffer, audioOutputBuffer, audioCodec, audioEncoder, audioDup = getAudioOptionFrameValues(self)
+
+    print('\nAudioOptionFrameVales:')
+    print(f'AudioBitRate: {audioBitRate}')
+    print(f'AudioBuffer: {audioBuffer}')
+    print(f'AudioOutputBuffer: {audioOutputBuffer}')
+    print(f"AudioCodec: {audioCodec}")
+    print(f"AudioEncoder: {audioEncoder}")
+    print(f"AudioDup: {audioDup}")
+    print('\n\n')
+
+    videoBitRate, videoBuffer, videoCodec, videoEncoder = getVideoOptionFrameValues(self)
+
+    print('\nVideoOptionFrameValues:')
+    print(f"VideoBitRate: {videoBitRate}")
+    print(f"VideoBuffer: {videoBuffer}")
+    print(f"VideoCodec: {videoCodec}")
+    print(f"VideoEncoder: {videoEncoder}")
+    print('\n\n')
+
+
+    cameraAr, cameraFps, cameraSize, cameraHighSpeed = getCameraOptionFrameValues(self)
+    
+    print('\nCameraOptionFrameValues:')
+    print(f"CameraAr: {cameraAr}")
+    print(f"CameraFps: {cameraFps}")
+    print(f"CameraSize: {cameraSize}")
+    print(f"CameraHighSpeed: {cameraHighSpeed}")
+    print('\n\n')
+
+    windowTitle, windowX, windowY, windowWidth, windowHeight, newDisplay, maxSize, crop, angle, alwaysOnTop, fullScreen, windowBorderless = getWindowOptionFrameValues(self)
+
+    print('\nWindowOptionFrameValues:')
+    print(f"WindowTitle: {windowTitle}")
+    print(f"WindowX: {windowX}")
+    print(f"WindowY: {windowY}")
+    print(f"WindowWidth: {windowWidth}")
+    print(f"WindowHeight: {windowHeight}")
+    print(f"NewDisplay: {newDisplay}")
+    print(f"MaxSize: {maxSize}")
+    print(f"Crop: {crop}")
+    print(f"Angle: {angle}")
+    print(f"AlwaysOnTop: {alwaysOnTop}")
+    print(f"FullScreen: {fullScreen}")
+    print(f"WindowBorderless: {windowBorderless}")
+    print('\n\n')
+
+    maxFps, shortCutMod, forceAdbForward, killAdbOnClose, noKeyRepeat, rawKeyEvents, legacyPaste, showTouches, noMouseHover = getControlOptionFrameValues(self)
+
+    print('\nControlOptionFrameValues:')
+    print(f"MaxFps: {maxFps}")
+    print(f"ShortCutMod: {shortCutMod}")
+    print(f"ForceAdbForward: {forceAdbForward}")
+    print(f"KillAdbOnClose: {killAdbOnClose}")
+    print(f"NoKeyRepeat: {noKeyRepeat}")
+    print(f"RawKeyEvents: {rawKeyEvents}")
+    print(f"LegacyPaste: {legacyPaste}")
+    print(f"ShowTouches: {showTouches}")
+    print(f"NoMouseHover: {noMouseHover}")    
+    print('\n\n')
+
+
+    pauseOnExit, screenOffTimeout, timeLimit, noPowerOn, turnScreenOff, powerOffOnClose, disableScreenSaver, stayAwake = getPowerOptionFrameValues(self)
+
+    print('\nPowerOptionFrameValues:')
+    print(f"PauseOnExit: {pauseOnExit}")
+    print(f"ScreenOfftimeout: {screenOffTimeout}")
+    print(f"TimeLimit: {timeLimit}")
+    print(f"NoPowerOn: {noPowerOn}")
+    print(f"TurnScreenOff: {turnScreenOff}")
+    print(f"PowerOffOnClose: {powerOffOnClose}")
+    print(f"DisableScreenSaver: {disableScreenSaver}")
+    print(f"StayAwake: {stayAwake}")
+    print('\n\n')
+
+
+    record, recordFormats, recordOrientation = getRecordOptionFrameValues(self)
+    
+    print('\nRecordOptionFrameValues:')
+    print(f"Record: {record}")
+    print(f"RecordFormats: {recordFormats}")
+    print(f"RecordOrientation: {recordOrientation}")
+    print('\n\n')
+
+    port, tunnelHost, tunnelPort = getConnectionsOptionFrameValues(self)
+
+    print('\nConnectionsOptionFrameValues:')
+    print(f"Port: {port}")
+    print(f"TunnelHost: {tunnelHost}")
+    print(f"TunnelPort: {tunnelPort}")
+    print('\n\n')
+
+    noVdDestroyContent, noVdSystemDecorations = getVirtualDisplayOptionFrameValues(self)
+
+    print('\nVirtualDisplayOptionFrameValues:')
+    print(f"NoVdDestroyContent: {noVdDestroyContent}")
+    print(f"NoVdSystemDecorations: {noVdSystemDecorations}")
+    print('\n\n')
+
+    v4l2Sink, v4l2Buffer = getV4l2OptionFrameValues(self)
+
+    print('\nV4l2OptionFrameValues:')
+    print(f"V4l2Sink: {v4l2Sink}")
+    print(f"V4l2Buffer: {v4l2Buffer}")
+    print('\n\n')
+
+    renderDriver = getRenderDriversOptionFrameValues(self)
+
+    print('\nRenderDriversOptionFrameValues:')
+    print(f"RenderDriver: {renderDriver}")
+    print('\n\n')
+
+    startApp = getAppsOptionFrameValues(self)
+
+    print('\nAppsOptionFrameValues:')
+    print(f"StartApp: {startApp}")
+    print('\n\n')
+
+    pushTarget, captureOrientation, noCleanUp, noClipboardAutoSync, noDownsizeOnError, noMipMaps, printFps, preferText, requireAudio = getOtherOptionFrameValues(self)
+
+    print('\nOtherOptionFrameValues:')
+    print(f"PushTarget: {pushTarget}")
+    print(f"CaptureOrientation: {captureOrientation}")
+    print(f"NoCleanUp: {noCleanUp}")
+    print(f"NoClipboardAutoSync: {noClipboardAutoSync}")
+    print(f"NoDownSizeOnError: {noDownsizeOnError}")
+    print(f"NoMipMaps: {noMipMaps}")
+    print(f"PrintFps: {printFps}")
+    print(f"PreferText: {preferText}")
+    print(f"RequireAudio: {requireAudio}")
+    print('\n\n')
+
+    return audioBitRate, audioBuffer, audioOutputBuffer, audioCodec, audioEncoder, audioDup, videoBitRate, videoBuffer, videoCodec, videoEncoder, cameraAr, cameraFps, cameraSize, cameraHighSpeed, windowTitle, windowX, windowY, windowWidth, windowHeight, newDisplay, maxSize, crop, angle, alwaysOnTop, fullScreen, windowBorderless, maxFps, shortCutMod, forceAdbForward, killAdbOnClose, noKeyRepeat, rawKeyEvents, legacyPaste, showTouches, noMouseHover, pauseOnExit, screenOffTimeout, timeLimit, noPowerOn, turnScreenOff, powerOffOnClose, disableScreenSaver, stayAwake, record, recordFormats, recordOrientation, port, tunnelHost, tunnelPort, noVdDestroyContent, noVdSystemDecorations, v4l2Sink, v4l2Buffer, renderDriver, startApp, pushTarget, captureOrientation, noCleanUp, noClipboardAutoSync, noDownsizeOnError, noMipMaps, printFps, preferText, requireAudio
 
 command = None
-def runProcess(device, otg, keyboard, mouse, gamepad, noControl, audioSource, noAudioForwarding, noAudioPlayback, videoSource, noVideoForwarding, cameraID, cameraFacing, noVideoPlayback):
+def runProcess(device, otg, keyboard, mouse, gamepad, noControl, audioSource, noAudioForwarding, noAudioPlayback, videoSource, noVideoForwarding, cameraID, cameraFacing, noVideoPlayback, ):
     global command
     
     mainCmd: list = ['scrcpy', '-s', device]
@@ -64,8 +508,8 @@ def runProcess(device, otg, keyboard, mouse, gamepad, noControl, audioSource, no
     print(f'Main Command: {mainCmd}')
     command = subprocess.Popen(mainCmd, text=False)
 
-def start_runProcess_thread(device, otg, keyboard, mouse, gamepad, noControl, audioSource, noAudioForwarding, noAudioPlayback, videoSource, noVideoForwarding, cameraID, cameraFacing, noVideoPlayback):
-    thread = threading.Thread(target=runProcess, args=(device, otg, keyboard, mouse, gamepad, noControl, audioSource, noAudioForwarding, noAudioPlayback, videoSource, noVideoForwarding, cameraID, cameraFacing, noVideoPlayback,))
+def start_runProcess_thread(*args):
+    thread = threading.Thread(target=runProcess, args=(*args,))
     thread.start()
 
 def stopScrcpy(self):
@@ -75,7 +519,9 @@ def stopScrcpy(self):
         
     except Exception as e:
         print(f'Error on stopScrcpy function\n{str(e)}')
-        self.root.quit()
+        
+
+
 
 def runScrcpy(self):
     if self.devices_menu.get():
@@ -166,22 +612,109 @@ def runScrcpy(self):
             print(f'Error collecting values from the video frame\n{str(e)}')
 
 
-    start_runProcess_thread(
-        device=device,
-        otg=otg,
-        keyboard=keyboard,
-        mouse=mouse,
-        gamepad=gamepad,
-        noControl=noControl,
-        audioSource=audioSource,
-        noAudioForwarding=noAudioForwarding,
-        noAudioPlayback=noAudioPlayback,
-        videoSource=videoSource,
-        noVideoForwarding=noVideoForwarding,
-        cameraID=cameraID,
-        cameraFacing=cameraFacing,
-        noVideoPlayback=noVideoPlayback
-    )
+    if self.advanched_check_value.get():
+        audioBitRate, audioBuffer, audioOutputBuffer, audioCodec, audioEncoder, audioDup, videoBitRate, videoBuffer, videoCodec, videoEncoder, cameraAr, cameraFps, cameraSize, cameraHighSpeed, windowTitle, windowX, windowY, windowWidth, windowHeight, newDisplay, maxSize, crop, angle, alwaysOnTop, fullScreen, windowBorderless, maxFps, shortCutMod, forceAdbForward, killAdbOnClose, noKeyRepeat, rawKeyEvents, legacyPaste, showTouches, noMouseHover, pauseOnExit, screenOffTimeout, timeLimit, noPowerOn, turnScreenOff, powerOffOnClose, disableScreenSaver, stayAwake, record, recordFormats, recordOrientation, port, tunnelHost, tunnelPort, noVdDestroyContent, noVdSystemDecorations, v4l2Sink, v4l2Buffer, renderDriver, startApp, pushTarget, captureOrientation, noCleanUp, noClipboardAutoSync, noDownsizeOnError, noMipMaps, printFps, preferText, requireAudio = getValuesFromAdvanchedWidget(self)
+
+        start_runProcess_thread(
+            device,
+            otg,
+            keyboard,
+            mouse,
+            gamepad,
+            noControl,
+            audioSource,
+            noAudioForwarding,
+            noAudioPlayback,
+            videoSource,
+            noVideoForwarding,
+            cameraID,
+            cameraFacing,
+            noVideoPlayback,
+            audioBitRate,
+            audioBuffer,
+            audioOutputBuffer,
+            audioCodec,
+            audioEncoder,
+            audioDup,
+            videoBitRate,
+            videoBuffer,
+            videoCodec,
+            videoEncoder,
+            cameraAr,
+            cameraFps,
+            cameraSize,
+            cameraHighSpeed,
+            windowTitle,
+            windowX,
+            windowY,
+            windowWidth,
+            windowHeight,
+            newDisplay,
+            maxSize,
+            crop, 
+            angle, 
+            alwaysOnTop, 
+            fullScreen, 
+            windowBorderless, 
+            maxFps, 
+            shortCutMod, 
+            forceAdbForward, 
+            killAdbOnClose, 
+            noKeyRepeat, 
+            rawKeyEvents, 
+            legacyPaste, 
+            showTouches, 
+            noMouseHover, 
+            pauseOnExit, 
+            screenOffTimeout, 
+            timeLimit, 
+            noPowerOn, 
+            turnScreenOff, 
+            powerOffOnClose, 
+            disableScreenSaver, 
+            stayAwake, 
+            record, 
+            recordFormats, 
+            recordOrientation, 
+            port, 
+            tunnelHost, 
+            tunnelPort, 
+            noVdDestroyContent, 
+            noVdSystemDecorations, 
+            v4l2Sink, 
+            v4l2Buffer, 
+            renderDriver, 
+            startApp, 
+            pushTarget, 
+            captureOrientation, 
+            noCleanUp, 
+            noClipboardAutoSync, 
+            noDownsizeOnError, 
+            noMipMaps, 
+            printFps, 
+            preferText, 
+            requireAudio
+
+        )
+    
+    else:
+        start_runProcess_thread(
+            device,
+            otg,
+            keyboard,
+            mouse,
+            gamepad,
+            noControl,
+            audioSource,
+            noAudioForwarding,
+            noAudioPlayback,
+            videoSource,
+            noVideoForwarding,
+            cameraID,
+            cameraFacing,
+            noVideoPlayback
+        )
+
 
 
     return
