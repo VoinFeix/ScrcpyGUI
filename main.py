@@ -248,7 +248,10 @@ class ScrcpyGUI:
     def enable_windowHeight_option(self):
         advanchedWidget.enable_windowHeight_option(self)
 
-    
+    # def updateAudioEncoders(self):
+    #     advanchedWidget.updateAudioEncoders(self)
+
+        
     # def enable_advanched_widgets_options(self):
     #     advanchedWidget.enable_advanched_widgets_options(self)
     
