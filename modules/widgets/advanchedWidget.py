@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import tkinter as tk
 from modules.themes.themes import default_font, heading_font, frame_font
+import modules.utils.getEncoders
 
 ADVANCHED_WINDOW_NAME = 'Advanched Options'
 ADVANCHED_WINDOW_GEOMETRY = '1000x700'
@@ -89,32 +90,31 @@ def audioOptionFrame_func(self, master):
     self.audioCodec_value = ctk.StringVar()
     self.audioCodec_value.set(self.audioCodecOptions[0])
 
-    self.audioCodecOptionMenu = ctk.CTkOptionMenu(self.audioOptionFrame, variable=self.audioCodec_value, values=self.audioCodecOptions, font=default_font)
+
+    self.audioCodecOptionMenu = ctk.CTkOptionMenu(self.audioOptionFrame, variable=self.audioCodec_value, command=None, values=self.audioCodecOptions, font=default_font)
     self.audioCodecOptionMenu.grid(row=4, column=1, padx=10, pady=10)
     self.audioCodecOptionMenu.configure(state='disabled')   
     
 
+    self.audioEncoders: list = modules.utils.getEncoders.getEncoders(self, self.devices_menu.get(), self.audioCodec_value.get(), forAudio=True)
 
     self.audioEncoder_check_value = ctk.BooleanVar()
     self.audioEncoderCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='AudioEncoder:', command=self.enable_audioEncoder_option, variable=self.audioEncoder_check_value, font=default_font)
     self.audioEncoderCheckBox.grid(row=5, column=0, padx=10, pady=10)
 
-    self.audioEncoders: list = ["Sample"]
     self.audioEncoder_value = ctk.StringVar()
     self.audioEncoder_value.set(self.audioEncoders[0])
 
-    self.audioEncoderOptionMenu = ctk.CTkOptionMenu(self.audioOptionFrame, variable=self.audioEncoder_value, values=self.audioEncoders, font=default_font)
+    self.audioEncoderOptionMenu = ctk.CTkOptionMenu(self.audioOptionFrame, variable=self.audioEncoder_value, font=default_font)
     self.audioEncoderOptionMenu.grid(row=5, column=1, padx=10, pady=10)
+    self.audioEncoderOptionMenu.configure(values=self.audioEncoders)
     self.audioEncoderOptionMenu.configure(state='disabled')
-
 
     self.audioDup_check_value = ctk.BooleanVar()
     self.audioDupCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='AudioDup', command=False, variable=self.audioDup_check_value, font=default_font)
     self.audioDupCheckBox.grid(row=6, column=0, padx=10, pady=10)
     self.audioDupCheckBox.configure(state='disabled')
     self.get_audioDup_option()
-
-
 
 
 
@@ -160,9 +160,9 @@ def videoOptionFrame_func(self, master):
     self.videoEncoderCheckBox = ctk.CTkCheckBox(self.videoOptionFrame, text='VideoEncoder:', command=self.enable_videoEncoder_option, variable=self.videoEncoder_check_value, font=default_font)
     self.videoEncoderCheckBox.grid(row=4, column=0, padx=10, pady=10)
 
-    self.videoEncoders: list = []
+    self.videoEncoders: list = modules.utils.getEncoders.getEncoders(self, self.devices_menu.get(), self.videoCodec_value.get(), forAudio=False)
     self.videoEncoder_value = ctk.StringVar()
-    # self.videoEncoder_value.set(self.videoEncoders[0])
+    self.videoEncoder_value.set(self.videoEncoders[0])
 
     self.videoEncoderOptionMenu = ctk.CTkOptionMenu(self.videoOptionFrame, command=None, variable=self.videoEncoder_value, values=self.videoEncoders, font=default_font)
     self.videoEncoderOptionMenu.grid(row=4, column=1, padx=10, pady=10)

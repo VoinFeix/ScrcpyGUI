@@ -1,6 +1,5 @@
 import subprocess
 import threading
-from tkinter import N
 
 def getAudioOptionFrameValues(self):
     
@@ -446,7 +445,7 @@ def getValuesFromAdvanchedWidget(self):
     return audioBitRate, audioBuffer, audioOutputBuffer, audioCodec, audioEncoder, audioDup, videoBitRate, videoBuffer, videoCodec, videoEncoder, cameraAr, cameraFps, cameraSize, cameraHighSpeed, windowTitle, windowX, windowY, windowWidth, windowHeight, newDisplay, maxSize, crop, angle, alwaysOnTop, fullScreen, windowBorderless, maxFps, shortCutMod, forceAdbForward, killAdbOnClose, noKeyRepeat, rawKeyEvents, legacyPaste, showTouches, noMouseHover, pauseOnExit, screenOffTimeout, timeLimit, noPowerOn, turnScreenOff, powerOffOnClose, disableScreenSaver, stayAwake, record, recordFormats, recordOrientation, port, tunnelHost, tunnelPort, noVdDestroyContent, noVdSystemDecorations, v4l2Sink, v4l2Buffer, renderDriver, startApp, pushTarget, captureOrientation, noCleanUp, noClipboardAutoSync, noDownsizeOnError, noMipMaps, printFps, preferText, requireAudio
 
 command = None
-def runProcess(device, otg, keyboard, mouse, gamepad, noControl, audioSource, noAudioForwarding, noAudioPlayback, videoSource, noVideoForwarding, cameraID, cameraFacing, noVideoPlayback, ):
+def runProcess(device=None, otg=None, keyboard=None, mouse=None, gamepad=None, noControl=None, audioSource=None, noAudioForwarding=None, noAudioPlayback=None, videoSource=None, noVideoForwarding=None, cameraID=None, cameraFacing=None, noVideoPlayback=None, audioBitRate=None, audioBuffer=None, audioOutputBuffer=None, audioCodec=None, audioEncoder=None, audioDup=None, videoBitRate=None, videoBuffer=None, videoCodec=None, videoEncoder=None, cameraAr=None, cameraFps=None, cameraSize=None, cameraHighSpeed=None, windowTitle=None, windowX=None, windowY=None, windowWidth=None, windowHeight=None, newDisplay=None, maxSize=None, crop=None, angle=None, alwaysOnTop=None, fullScreen=None, windowBorderless=None, maxFps=None, shortCutMod=None, forceAdbForward=None, killAdbOnClose=None, noKeyRepeat=None, rawKeyEvents=None, legacyPaste=None, showTouches=None, noMouseHover=None, pauseOnExit=None, screenOffTimeout=None, timeLimit=None, noPowerOn=None, turnScreenOff=None, powerOffOnClose=None, disableScreenSaver=None, stayAwake=None, record=None, recordFormats=None, recordOrientation=None, port=None, tunnelHost=None, tunnelPort=None, noVdDestroyContent=None, noVdSystemDecorations=None, v4l2Sink=None, v4l2Buffer=None, renderDriver=None, startApp=None, pushTarget=None, captureOrientation=None, noCleanUp=None, noClipboardAutoSync=None, noDownsizeOnError=None, noMipMaps=None, printFps=None, preferText=None, requireAudio=None):
     global command
     
     mainCmd: list = ['scrcpy', '-s', device]
@@ -505,8 +504,264 @@ def runProcess(device, otg, keyboard, mouse, gamepad, noControl, audioSource, no
                 cameraFacing: list = [f'--camera-facing={cameraFacing}']
                 mainCmd += cameraFacing
 
+    if audioBitRate:
+        audioBitRateCmd: list = [f'--audio-bit-rate={audioBitRate}']
+        mainCmd += audioBitRateCmd
+    
+    if audioBuffer:
+        audioBufferCmd: list = [f'--audio-buffer={audioBuffer}']
+        mainCmd += audioBufferCmd
+    
+    if audioOutputBuffer:
+        audioOutputBufferCmd: list = [f'--audio-output-buffer={audioOutputBuffer}']
+        mainCmd += audioOutputBufferCmd
+    
+    if audioCodec:
+        audioCodecCmd: list = [f'--audio-codec={audioCodec}']
+        mainCmd += audioCodecCmd
+
+    if audioEncoder:
+        audioEncoderCmd: list = [f'--audio-encoder={audioEncoder}']
+        mainCmd += audioEncoderCmd
+
+    if audioDup:
+        audioDupCmd: list = [f'--audio-dup']
+        mainCmd += audioDupCmd
+    
+    if videoBitRate:
+        videoBitRateCmd: list = [f'--video-bit-rate={videoBitRate}']
+        mainCmd += videoBitRateCmd
+
+    if videoBuffer:
+        videoBufferCmd: list = [f'--video-buffer={videoBuffer}']
+        mainCmd += videoBufferCmd
+
+    if videoCodec:
+        videoCodecCmd: list = [f'--video-codec={videoCodec}']
+        mainCmd += videoCodecCmd
+    
+    if videoEncoder:
+        videoEncoderCmd: list = [f'--video-encoder={videoEncoder}']
+        mainCmd += videoEncoderCmd
+    
+    if cameraAr:
+        cameraArCmd: list = [f'--camera-ar={cameraAr}']
+        mainCmd += cameraArCmd
+    
+    if cameraFps:
+        cameraFpsCmd: list = [f'--camera-fps={cameraFps}']
+        mainCmd += cameraFpsCmd
+    
+    if cameraSize:
+        cameraSizeCmd: list = [f'--camera-size={cameraSize}']
+        mainCmd += cameraSizeCmd
+    
+    if cameraHighSpeed:
+        cameraHighSpeedCmd: list = [f'--camera-high-speed']
+        mainCmd += cameraHighSpeedCmd
+    
+    if windowTitle:
+        windowTitleCmd: list = [f'--window-title={windowTitle}']
+        mainCmd += windowTitleCmd
+    
+    if windowX:
+        windowXCmd: list = [f'--window-x={windowX}']
+        mainCmd += windowXCmd
+    
+    if windowY:
+        windowYCmd: list = [f'--window-y={windowY}']
+        mainCmd += windowYCmd
+    
+    if windowWidth:
+        windowWidthCmd: list = [f'--window-width={windowWidth}']
+        mainCmd += windowWidthCmd
+    
+    if windowHeight:
+        windowHeightCmd: list = [f'--window-height={windowHeight}']
+        mainCmd += windowHeightCmd
+    
+    if newDisplay:
+        newDisplayCmd: list = [f'--new-display={newDisplay}']
+        mainCmd += newDisplayCmd
+    
+    if maxSize:
+        maxSizeCmd: list = [f'--max-size={maxSize}']
+        mainCmd += maxSizeCmd
+
+    if crop:
+        cropCmd: list = [f'--crop={crop}']
+        mainCmd += cropCmd
+    
+    if angle:
+        angleCmd: list = [f'--angle={angle}']
+        mainCmd += angleCmd
+    
+    if alwaysOnTop:
+        alwaysOnTopCmd: list = [f'--always-on-top']
+        mainCmd += alwaysOnTopCmd
+
+    if fullScreen: 
+        fullScreenCmd: list = [f'--fullscreen']
+        mainCmd += fullScreenCmd
+    
+    if windowBorderless:
+        windowBorderlessCmd: list = [f'--window-borderless']
+        mainCmd += windowBorderlessCmd
+    
+    if maxFps:
+        maxFpsCmd: list = [f'--max-fps={maxFps}']
+        mainCmd += maxFpsCmd
+    
+    if shortCutMod:
+        shortCutModCmd: list = [f'--short-cut={shortCutMod}']
+        mainCmd += shortCutModCmd
+    
+    if forceAdbForward:
+        forceAdbForwardCmd: list = [f'--force-adb-forward']
+        mainCmd += forceAdbForwardCmd    
+    
+    if killAdbOnClose:
+        killAdbOnCloseCmd: list = ['--kill-adb-on-close']
+        mainCmd += killAdbOnCloseCmd
+    
+    if noKeyRepeat:
+        noKeyRepeatCmd: list = ['--no-key-repeat']
+        mainCmd += noKeyRepeatCmd
+    
+    if rawKeyEvents:
+        rawKeyEventsCmd: list = ['--raw-key-events']
+        mainCmd += rawKeyEventsCmd
+    
+    if legacyPaste:
+        legacyPasteCmd: list = ['--legacy-paste']
+        mainCmd += legacyPasteCmd
+    
+    if showTouches:
+        showTouchesCmd: list = ['--show-touches']
+        mainCmd += showTouchesCmd    
+    
+    if noMouseHover:
+        noMouseHoverCmd: list = ['--no-mouse-hover']
+        mainCmd += noMouseHoverCmd
+    
+    if pauseOnExit:
+        pauseOnExitCmd: list = [f'--pause-on-exit={pauseOnExit}']
+        mainCmd += pauseOnExitCmd
+    
+    if screenOffTimeout:
+        screenOffTimeoutCmd: list = [f'--screen-off-timeout={screenOffTimeout}']
+        mainCmd += screenOffTimeoutCmd
+    
+    if timeLimit:
+        timeLimitCmd: list = [f'--time-limit={timeLimit}']
+        mainCmd += timeLimitCmd
+
+    if noPowerOn: 
+        noPowerOnCmd: list = ['--no-power-on']
+        mainCmd += noPowerOnCmd
+
+    if turnScreenOff:
+        turnScreenOffCmd: list = ['--turn-screen-off']
+        mainCmd += turnScreenOffCmd
+
+    if powerOffOnClose:
+        powerOffOnCloseCmd: list = ['--power-off-on-close']
+        mainCmd += powerOffOnCloseCmd
+
+    if disableScreenSaver:
+        disableScreenSaverCmd: list = ['--disable-screensaver']
+        mainCmd += disableScreenSaverCmd
+
+    if stayAwake:
+        stayAwakeCmd: list = ['--stay-awake']
+        mainCmd += stayAwakeCmd
+
+    if record:
+        recordCmd: list = [f'--record={record}']
+        mainCmd += recordCmd
+    
+    if recordFormats:
+        recordFormatsCmd: list = [f'--record-format={recordFormats}']
+        mainCmd += recordFormatsCmd
+    
+    if recordOrientation: 
+        recordOrientationCmd: list = [f'--record-orientation={recordOrientation}']
+        mainCmd += recordOrientationCmd
+    
+    if port: 
+        portCmd: list = [f'--port={port}']
+        mainCmd += portCmd
+
+    if tunnelHost: 
+        tunnelHostCmd: list = [f'--tunnel-host={tunnelHost}']
+        mainCmd += tunnelHostCmd
+
+    if tunnelPort:
+        tunnelPortCmd: list = [f'--tunnel-port={tunnelPort}']
+        mainCmd += tunnelPortCmd
+
+    if noVdDestroyContent:
+        noVdDestroyContentCmd: list = ['--no-vd-destroy-content']
+        mainCmd += noVdDestroyContentCmd
+
+    if noVdSystemDecorations:
+        noVdSystemDecorationsCmd: list = ['--no-vd-system-decorations']
+        mainCmd += noVdSystemDecorationsCmd
+
+    if v4l2Sink:
+        v4l2SinkCmd: list = [f'--v4l2-sink={v4l2Sink}']
+        mainCmd += v4l2SinkCmd
+
+    if v4l2Buffer:
+        v4l2BufferCmd: list = [f'--v4l2-buffer={v4l2Buffer}']
+        mainCmd += v4l2BufferCmd
+
+    if renderDriver: 
+        renderDriverCmd: list = [f'--render-driver={renderDriver}']
+        mainCmd += renderDriverCmd
+
+    if startApp:
+        startAppCmd: list = [f'--start-app={startApp}']
+        mainCmd += startAppCmd
+
+    if pushTarget: 
+        pushTargetCmd: list = [f'--push-target={pushTarget}']
+        mainCmd += pushTargetCmd
+
+    if captureOrientation:
+        captureOrientationCmd: list = [f'--capture-orientation={captureOrientation}']
+        mainCmd += captureOrientationCmd
+
+    if noCleanUp:
+        noCleanUpCmd: list = ['--no-cleanup']
+        mainCmd += noCleanUpCmd
+
+    if noClipboardAutoSync:
+        noClipboardAutoSyncCmd: list = ['--no-clipboard-autosync']
+        mainCmd += noClipboardAutoSyncCmd
+
+    if noDownsizeOnError:
+        noDownsizeOnErrorCmd: list = ['--no-downsize-on-error']
+        mainCmd += noDownsizeOnErrorCmd
+
+    if noMipMaps:
+        noMipMapsCmd: list = ['--no-mipmaps']
+        mainCmd += noMipMapsCmd
+
+    if printFps:
+        printFpsCmd: list = ['--print-fps']
+        mainCmd += printFpsCmd
+
+    if preferText:
+        preferTextCmd: list = ['--prefer-text']
+        mainCmd += preferTextCmd
+
+    if requireAudio: 
+        requireAudioCmd: list = ['--require-audio']
+        mainCmd += requireAudioCmd
+
     print(f'Main Command: {mainCmd}')
-    command = subprocess.Popen(mainCmd, text=False)
+    # command = subprocess.Popen(mainCmd, text=False)
 
 def start_runProcess_thread(*args):
     thread = threading.Thread(target=runProcess, args=(*args,))
