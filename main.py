@@ -258,6 +258,9 @@ class ScrcpyGUI:
     def exitAdvanchedWindow_func(self):
         advanchedWidget.exitAdvanchedWindow_func(self)
 
+    def doneAdvanchedWindow_func(self):
+        advanchedWidget.doneAdvanchedWindow_func(self)
+
     def exitScrcpy_func(self):
         self.stopScrcpy()
         self.root.quit()
