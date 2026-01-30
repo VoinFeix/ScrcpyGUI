@@ -5,6 +5,7 @@ import modules.utils.getEncoders
 
 ADVANCHED_WINDOW_NAME = 'Advanched Options'
 ADVANCHED_WINDOW_GEOMETRY = '1000x700'
+valuesDict: dict = {}
 
 window = None
 def advanchedCheck(self):
@@ -33,9 +34,16 @@ def advanched_widget(self):
     self.advanchedWindowHeading = ctk.CTkLabel(self.advanchedPopUpWindow, text='Advanched Options', font=heading_font)
     self.advanchedWindowHeading.pack(padx=10, pady=10)
 
+    if valuesDict:
+        print(f"{"="*100}\n")
+        print(valuesDict)
+        print(f"{"="*100}\n")
+    else:
+        print('ValuesDict is empty')
+    
     self.advanched_widgets_options()
 
-    ctk.CTkButton(self.advanchedPopUpWindow, text='Done', command=self.exitAdvanchedWindow_func, font=default_font).pack(padx=10, pady=10)
+    ctk.CTkButton(self.advanchedPopUpWindow, text='Done', command=self.doneAdvanchedWindow_func, font=default_font).pack(padx=10, pady=10)
     ctk.CTkButton(self.advanchedPopUpWindow, text='Exit',  command=self.exitAdvanchedWindow_func, font=default_font).pack(padx=10, pady=10)
 
 
@@ -43,6 +51,92 @@ def exitAdvanchedWindow_func(self):
     self.advanchedPopUpWindow.destroy()
     self.advanched_check_value.set(False)
 
+def doneAdvanchedWindow_func(self):
+    global valuesDict
+    values: dict = valuesDict
+    try:        
+        values['audioBitRate'] = self.audioBitRateEntry.get() if self.audioBitRate_check_value.get() else None
+        values['audioBuffer'] = self.audioBufferEntry.get() if self.audioBuffer_check_value.get() else None
+        values['audioOutputBuffer'] = self.audioOutputBufferEntry.get() if self.audioOutputBuffer_check_value.get() else None
+        values['audioCodec'] = self.audioCodec_value.get() if self.audioCodec_check_value.get() else None
+        values['audioEncoder'] = self.audioEncoder_value.get() if self.audioEncoder_check_value.get() else None
+        values['audioDup'] = self.audioDup_check_value.get() if self.audioDup_check_value.get() else None
+
+        values['videoBitRate'] = self.videoBitRateEntry.get() if self.videoBitRate_check_value.get() else None
+        values['videoBuffer'] = self.videoBufferEntry.get() if self.videoBuffer_check_value.get() else None
+        values['videoCodec'] = self.videoCodec_value.get() if self.videoCodec_check_value.get() else None
+        values['videoEncoder'] = self.videoEncoder_value.get() if self.videoEncoder_check_value.get() else None
+
+        values['cameraAr'] = self.cameraArEntry.get() if self.cameraAr_check_value.get() else None
+        values['cameraFps'] = self.cameraFpsEntry.get() if self.cameraFps_check_value.get() else None
+        values['cameraSize'] = self.cameraSizeEntry.get() if self.cameraSize_check_value.get() else None
+        values['cameraHighSpeed'] = self.cameraHighSpeed_check_value.get() if self.cameraHighSpeed_check_value.get() else None
+        
+        values['windowTitle'] = self.windowTitleEntry.get() if self.windowTitle_check_value.get() else None
+        values['windowX'] = self.windowXEntry.get() if self.windowX_check_value.get() else None
+        values['windowY'] = self.windowYEntry.get() if self.windowY_check_value.get() else None
+        values['windowWidth'] = self.windowWidthEntry.get() if self.windowWidth_check_value.get() else None
+        values['windowHeight'] = self.windowHeightEntry.get() if self.windowHeight_check_value.get() else None
+        values['newDisplay'] = self.newDisplayEntry.get() if self.newDisplay_check_value.get() else None
+        values['maxSize'] = self.maxSizeEntry.get() if self.maxSize_check_value.get() else None
+        values['crop'] = self.cropEntry.get() if self.crop_check_value.get() else None
+        values['angle'] = self.angleEntry.get() if self.angle_check_value.get() else None
+        values['alwaysOnTop'] = self.alwaysOnTop_check_value.get() if self.alwaysOnTop_check_value.get() else None
+        values['fullScreen'] = self.fullScreen_check_value.get() if self.fullScreen_check_value.get() else None
+        values['windowBorderless'] = self.windowBorderless_check_value.get() if self.windowBorderless_check_value.get() else None
+
+        values['maxFps'] = self.maxFpsEntry.get() if self.maxFps_check_value.get() else None
+        values['shortcutMod'] = self.shortcutMod_value.get() if self.shortcutMod_check_value.get() else None
+        values['forceAdbForward'] = self.forceAdbForward_check_value.get() if self.forceAdbForward_check_value.get() else None
+        values['killAdbOnClose'] = self.killAdbOnClose_check_value.get() if self.killAdbOnClose_check_value.get() else None
+        values['noKeyRepeat'] = self.noKeyRepeat_check_value.get() if self.noKeyRepeat_check_value.get() else None
+        values['rawKeyEvents'] = self.rawKeyEvents_check_value.get() if self.rawKeyEvents_check_value.get() else None
+        values['legacyPaste'] = self.legacyPaste_check_value.get() if self.legacyPaste_check_value.get() else None
+        values['showTouches'] = self.showTouches_check_value.get() if self.showTouches_check_value.get() else None
+        values['noMouseHover'] = self.noMouseHover_check_value.get() if self.noMouseHover_check_value.get() else None
+
+        values['pauseOnExit'] = self.pauseOnExitEntry.get() if self.pauseOnExit_check_value.get() else None
+        values['screenOffTimeout'] = self.screenOffTimeoutEntry.get() if self.screenOffTimeout_check_value.get() else None            
+        values['timeLimit'] = self.timeLimitEntry.get() if self.timeLimit_check_value.get() else None
+        values['noPowerOn'] = self.noPowerOn_check_value.get() if self.noPowerOn_check_value.get() else None
+        values['turnScreenOff'] = self.turnScreenOff_check_value.get() if self.turnScreenOff_check_value.get() else None
+        values['powerOffOnClose'] = self.powerOffOnClose_check_value.get() if self.powerOffOnClose_check_value.get() else None
+        values['disableScreenSaver'] = self.disableScreenSaver_check_value.get() if self.disableScreenSaver_check_value.get() else None
+        values['stayAwake'] = self.stayAwake_check_value.get() if self.stayAwake_check_value.get() else None
+
+        values['record'] = self.recordEntry.get() if self.record_check_value.get() else None
+        values['recordFormats'] = self.recordFormats_value.get() if self.recordFormats_check_value.get() else None
+        values['recordOrientation'] = self.recordOrientation_value.get() if  self.recordOrientation_check_value.get() else None
+
+        values['port'] = self.portEntry.get() if self.port_check_value.get() else None
+        values['tunnelHost'] = self.tunnelHostEntry.get() if self.tunnelHost_check_value.get() else None
+        values['tunnelPort'] = self.tunnelPortEntry.get() if self.tunnelPort_check_value.get() else None
+
+        values['noVdDestroyContent'] = self.noVdDestroyContent_check_value.get() if self.noVdDestroyContent_check_value.get() else None
+        values['noVdSystemDecorations'] = self.noVdSystemDecorations_check_value.get() if self.noVdSystemDecorations_check_value.get() else None
+
+        values['v4l2Sink'] = self.v4l2SinkEntry.get() if self.v4l2Sink_check_value.get() else None
+        values['v4l2Buffer'] = self.v4l2BufferEntry.get() if self.v4l2BufferEntry.get() else None
+
+        values['renderDriver'] = self.renderDriver_value.get() if self.renderDriver_check_value.get() else None
+
+        values['startApp'] = self.startAppEntry.get() if self.startApp_check_value.get() else None
+
+        values['pushTarget'] = self.pushTargetEntry.get() if self.pushTarget_check_value.get() else None
+        values['captureOrientation'] = self.captureOrientationEntry.get() if self.captureOrientation_check_value.get() else None
+        values['noCleanUp'] = self.noCleanUp_check_value.get() if self.noCleanUp_check_value.get() else None
+        values['noClipboardAutoSync'] = self.noClipboardAutoSync_check_value.get() if self.noClipboardAutoSync_check_value.get() else None
+        values['noDownsizeOnError'] = self.noDownsizeOnError_check_value.get() if self.noDownsizeOnError_check_value.get() else None
+        values['noMipMaps'] = self.noMipMaps_check_value.get() if self.noMipMaps_check_value.get() else None
+        values['printFps'] = self.printFps_check_value.get() if self.printFps_check_value.get() else None
+        values['preferText'] = self.preferText_check_value.get() if self.preferText_check_value.get() else None
+        values['requireAudio'] = self.requireAudio_check_value.get() if self.requireAudio_check_value.get() else None
+        
+    except Exception as e:
+        print(f'Error on doneAdvanchedWindow_func: {e}')
+
+    self.exitAdvanchedWindow_func()
+    
 
 
 def audioOptionFrame_func(self, master):
@@ -59,7 +153,6 @@ def audioOptionFrame_func(self, master):
     self.audioBitRateEntry.grid(row=1, column=1, padx=10, pady=10)
     self.audioBitRateEntry.insert(ctk.END, '128K')
     self.audioBitRateEntry.configure(state='disabled')
-
 
 
     self.audioBuffer_check_value = ctk.BooleanVar()
@@ -96,7 +189,7 @@ def audioOptionFrame_func(self, master):
     self.audioCodecOptionMenu.configure(state='disabled')   
     
 
-    self.audioEncoders: list = modules.utils.getEncoders.getEncoders(self, self.devices_menu.get(), self.audioCodec_value.get(), forAudio=True)
+    self.audioEncoders: list = modules.utils.getEncoders.getEncoders(self, self.devices_menu.get(), forAudio=True)
 
     self.audioEncoder_check_value = ctk.BooleanVar()
     self.audioEncoderCheckBox = ctk.CTkCheckBox(self.audioOptionFrame, text='AudioEncoder:', command=self.enable_audioEncoder_option, variable=self.audioEncoder_check_value, font=default_font)
@@ -160,7 +253,7 @@ def videoOptionFrame_func(self, master):
     self.videoEncoderCheckBox = ctk.CTkCheckBox(self.videoOptionFrame, text='VideoEncoder:', command=self.enable_videoEncoder_option, variable=self.videoEncoder_check_value, font=default_font)
     self.videoEncoderCheckBox.grid(row=4, column=0, padx=10, pady=10)
 
-    self.videoEncoders: list = modules.utils.getEncoders.getEncoders(self, self.devices_menu.get(), self.videoCodec_value.get(), forAudio=False)
+    self.videoEncoders: list = modules.utils.getEncoders.getEncoders(self, self.devices_menu.get(), forAudio=False)
     self.videoEncoder_value = ctk.StringVar()
     self.videoEncoder_value.set(self.videoEncoders[0])
 

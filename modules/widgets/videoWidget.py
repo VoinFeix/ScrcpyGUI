@@ -9,6 +9,7 @@ def videoCheck(self):
     self.video_check_value = ctk.BooleanVar()
     self.videoCheckBox = ctk.CTkCheckBox(self.videoFrame, text='Video', command=self.video_widget, variable=self.video_check_value, font=default_font)
     self.videoCheckBox.grid(row=0, column=0, padx=10, pady=10)
+    # self.video_check_value.set(True)
 
 def video_widget(self):
     if not self.video_check_value.get():

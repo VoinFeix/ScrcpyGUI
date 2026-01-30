@@ -8,6 +8,7 @@ def inputsCheck(self):
     self.input_check_value = ctk.BooleanVar()
     self.inputCheckBox = ctk.CTkCheckBox(self.inputsFrame, text='Inputs', command=self.input_widget, variable=self.input_check_value, font=default_font)
     self.inputCheckBox.grid(row=0, column=0, padx=10, pady=10)
+    # self.input_check_value.set(True)
     
 def input_widget(self):
     if not self.input_check_value.get():

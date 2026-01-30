@@ -9,6 +9,7 @@ def audioCheck(self):
     self.audio_check_value = ctk.BooleanVar()
     self.audioCheckBox = ctk.CTkCheckBox(self.audioFrame, text='Audio', command=self.audio_widget, variable=self.audio_check_value, font=default_font)
     self.audioCheckBox.grid(row=0, column=0, padx=10, pady=10)
+    # self.audio_check_value.set(True)
     
 
 def audio_widget(self):
